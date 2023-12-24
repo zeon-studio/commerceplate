@@ -1,0 +1,9 @@
+[build]
+publish = ".next"
+command = "yarn build"
+
+[functions]
+included_files = ["src/content/**"]
+
+[build.environment]
+NODE_VERSION = "20"

@@ -1,0 +1,74 @@
+:root {
+  --bar-inner-background: gray;
+}
+
+.multi-range-slider .bar-left {
+  width: 25%;
+  background-color: #e7e7e7;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: inset 0px 0px 0px black;
+  padding: 4px 0px;
+}
+
+.multi-range-slider .bar-right {
+  width: 25%;
+  background-color: #e7e7e7;
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: inset 0px 0px 0px black;
+}
+
+.multi-range-slider .bar-inner {
+  background-color: var(--bar-inner-background);
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  border: none;
+  justify-content: space-between;
+  box-shadow: inset 0px 0px 0px gray;
+}
+
+.multi-range-slider .thumb .caption * {
+  position: absolute;
+  min-width: 30px;
+  height: 30px;
+  font-size: 75%;
+  text-align: center;
+  line-height: 30px;
+  background-color: transparent;
+  border-radius: 15px;
+  color: transparent;
+  box-shadow: 0px 0px 0px black;
+  padding: 0px 5px;
+  white-space: nowrap;
+}
+
+.multi-range-slider {
+  display: flex;
+  position: relative;
+  border: solid 1px gray;
+  border-radius: 10px;
+  padding: 8px 0 16px 0;
+  margin: 0px 8px 0px 10px;
+  flex-direction: column;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.multi-range-slider .thumb::before {
+  content: "";
+  background-color: inherit;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: solid 3px gray; /* black  */
+  box-shadow:
+    0px 0px 0px black,
+    inset 0px 0px 0px gray;
+  border-radius: 50%;
+  z-index: 1;
+  margin: -7px -12px;
+  cursor: pointer;
+}

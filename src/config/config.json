@@ -1,0 +1,52 @@
+{
+  "site": {
+    "title": "Commerceplate",
+    "base_url": "https://tf-commerceplate.netlify.app/",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_darkmode": "/images/logo-darkmode.png",
+    "logo_width": "150",
+    "logo_height": "27",
+    "logo_text": "Commerceplate"
+  },
+
+  "settings": {
+    "search": true,
+    "account": true,
+    "sticky_header": true,
+    "theme_switcher": true,
+    "default_theme": "system",
+    "pagination_card": 9,
+    "pagination_list": 4,
+    "summary_length": 200,
+    "blog_folder": "blog"
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+  },
+
+  "navigation_button": {
+    "enable": false,
+    "label": "Get Started",
+    "link": "https://tf-commerceplate.netlify.app/"
+  },
+
+  "metadata": {
+    "meta_author": "Themefisher",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Next Boilerplate"
+  },
+
+  "shopify": {
+    "currencySymbol": "৳",
+    "currencyCode": "BDT",
+    "collections": {
+      "hero_slider": "hidden-homepage-carousel",
+      "featured_products": "latest-products"
+    }
+  }
+}
