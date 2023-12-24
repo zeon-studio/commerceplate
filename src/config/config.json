@@ -32,13 +32,13 @@
   "navigation_button": {
     "enable": false,
     "label": "Get Started",
-    "link": "https://tf-commerceplate.netlify.app/"
+    "link": "https://github.com/zeon-studio/commerceplate"
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Zeon Studio",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Next Boilerplate"
+    "meta_description": "Shopify Storefront Boilerplate"
   },
 
   "shopify": {
@@ -46,7 +46,7 @@
     "currencyCode": "BDT",
     "collections": {
       "hero_slider": "hidden-homepage-carousel",
-      "featured_products": "latest-products"
+      "featured_products": "featured-products"
     }
   }
 }
