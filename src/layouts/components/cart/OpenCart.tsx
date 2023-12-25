@@ -11,10 +11,7 @@ export default function OpenCart({
   return (
     <div className="relative text-xl text-dark hover:text-primary dark:border-darkmode-border dark:text-white">
       <BsCart3
-        className={clsx(
-          "transition-all ease-in-out hover:scale-110 ",
-          className,
-        )}
+        className={clsx("dark:hover:text-darkmode-primary", className)}
       />
 
       {quantity ? (

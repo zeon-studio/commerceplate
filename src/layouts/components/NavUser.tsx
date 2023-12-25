@@ -64,7 +64,7 @@ const NavUser = () => {
                       {user?.firstName}
                     </p>
                     <svg
-                      className={`w-5 text-dark dark:text-darkmode-dark transform transition-transform`}
+                      className={`w-5 text-dark dark:text-darkmode-dark dark:hover:text-darkmode-primary`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -86,7 +86,7 @@ const NavUser = () => {
               href="/login"
               aria-label="login"
             >
-              <BsPerson />
+              <BsPerson className="dark:hover:text-darkmode-primary" />
             </Link>
           )}
 
