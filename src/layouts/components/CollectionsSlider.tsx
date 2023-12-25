@@ -7,7 +7,6 @@ import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -15,21 +14,21 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import LoadingCategory from "./skeleton/SkeletonCategory";
 
-const CategoriesSlider = ({ categories }: { categories: any }) => {
+const CollectionsSlider = ({ collections }: { collections: any }) => {
   const [_, setInit] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [categoriesData, setCategoriesData] = useState([]);
-  const [loadingCategoriesData, setLoadingCategoriesData] = useState(true);
+  const [collectionsData, setCollectionsData] = useState([]);
+  const [loadingCollectionsData, setLoadingCollectionsData] = useState(true);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   useEffect(() => {
-    setCategoriesData(categories);
-    setLoadingCategoriesData(false);
-  }, [categories]);
+    setCollectionsData(collections);
+    setLoadingCollectionsData(false);
+  }, [collections]);
 
-  if (loadingCategoriesData) {
+  if (loadingCollectionsData) {
     return <LoadingCategory />;
   }
 
@@ -65,7 +64,7 @@ const CategoriesSlider = ({ categories }: { categories: any }) => {
         //trigger a re-render by updating the state on swiper initialization
         onInit={() => setInit(true)}
       >
-        {categoriesData.slice(1).map((item: any) => {
+        {collectionsData.slice(1).map((item: any) => {
           const { title, handle, image, path, products } = item;
           return (
             <SwiperSlide key={handle}>
@@ -120,4 +119,4 @@ const CategoriesSlider = ({ categories }: { categories: any }) => {
   );
 };
 
-export default CategoriesSlider;
+export default CollectionsSlider;

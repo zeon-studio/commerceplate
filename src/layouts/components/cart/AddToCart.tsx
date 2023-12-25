@@ -1,11 +1,12 @@
 "use client";
+
 import { ProductVariant } from "@/lib/shopify/types";
+import { addItem } from "@/lib/utils/cartActions";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { BiLoaderAlt } from "react-icons/bi";
-import { addItem } from "./actions";
 
 function SubmitButton({
   availableForSale,

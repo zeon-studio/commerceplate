@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import CategoriesSlider from "@/components/CategoriesSlider";
+import CollectionsSlider from "@/components/CollectionsSlider";
 import HeroSlider from "@/components/HeroSlider";
 import SkeletonCategory from "@/components/skeleton/SkeletonCategory";
 import SkeletonFeaturedProducts from "@/components/skeleton/SkeletonFeaturedProducts";
@@ -21,9 +21,9 @@ const ShowHeroSlider = async () => {
   return <HeroSlider products={products} />;
 };
 
-const ShowCategories = async () => {
-  const categories = await getCollections();
-  return <CategoriesSlider categories={categories} />;
+const ShowCollections = async () => {
+  const collections = await getCollections();
+  return <CollectionsSlider collections={collections} />;
 };
 
 const ShowFeaturedProducts = async () => {
@@ -54,11 +54,11 @@ const Home = () => {
       <section className="section">
         <div className="container">
           <div className="text-center mb-6 md:mb-14">
-            <h2>Categories</h2>
+            <h2>Collections</h2>
           </div>
           <Suspense fallback={<SkeletonCategory />}>
             {/* @ts-ignore */}
-            <ShowCategories />
+            <ShowCollections />
           </Suspense>
         </div>
       </section>
