@@ -19,6 +19,12 @@ export type RegularPage = {
       avatar: string;
       content: string;
     }[];
+    staff_section_enable?: boolean;
+    staff?: {
+      name: string;
+      designation: string;
+      avatar: string;
+    }[];
   };
   content: string;
   slug?: string;

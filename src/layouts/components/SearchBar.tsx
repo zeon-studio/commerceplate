@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useCollapse } from "react-collapsed";
 import { IoSearch } from "react-icons/io5";
 import { TbZoomCancel } from "react-icons/tb";
+import Cookies from "js-cookie";
 
 const SearchBar = ({
   products,
@@ -13,6 +14,7 @@ const SearchBar = ({
   products?: any;
   searchValue?: string;
 }) => {
+  const accessToken = Cookies.get("token");
   const router = useRouter();
   const searchParams = useSearchParams();
   const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
@@ -62,6 +64,10 @@ const SearchBar = ({
     router.push(createUrl("/products", newParams));
   }
 
+  const collapseBarClass = `collapse-bar-class w-full absolute top-[56px] max-lg:left-0 lg:top-1 lg:w-52 ${
+    accessToken ? "lg:right-[275px]" : "lg:right-[180px]"
+  }`;
+
   return (
     <div className="flex items-center">
       <button
@@ -71,7 +77,7 @@ const SearchBar = ({
         {isExpanded ? <TbZoomCancel size={20} /> : <IoSearch size={20} />}
       </button>
       <div
-        className="collapse-bar-class w-full absolute top-[56px] max-lg:left-0 lg:top-1 lg:w-52 lg:right-[180px]"
+        className={collapseBarClass}
         {...getCollapseProps()}
       >
         <div className="container">

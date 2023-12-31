@@ -64,7 +64,7 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
         //trigger a re-render by updating the state on swiper initialization
         onInit={() => setInit(true)}
       >
-        {collectionsData.slice(1).map((item: any) => {
+        {collectionsData?.map((item: any) => {
           const { title, handle, image, path, products } = item;
           return (
             <SwiperSlide key={handle}>
