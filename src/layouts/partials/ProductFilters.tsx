@@ -55,7 +55,7 @@ const ProductFilters = ({
   };
 
   return (
-    <div className="py-4 lg:py-10">
+    <div>
       <div>
         <h5 className="mb-2 lg:text-xl">Select Price Range</h5>
         <hr className="dark:border-darkmode-border" />

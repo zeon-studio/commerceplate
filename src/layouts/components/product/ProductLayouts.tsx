@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { useCollapse } from "react-collapsed";
 import { BsGridFill } from "react-icons/bs";
 import { FaList } from "react-icons/fa6";
-import { IoSearch } from "react-icons/io5";
 import { TbFilter, TbFilterX } from "react-icons/tb";
 import DropdownMenu from "../filter/DropdownMenu";
 
@@ -31,19 +30,19 @@ const ProductLayouts = ({
   const [isInputEditing, setInputEditing] = useState(false);
   const isListView = searchParams.get("layout") === "list";
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputEditing(true);
-    const val = e.target as HTMLInputElement;
-    const newParams = new URLSearchParams(searchParams.toString());
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setInputEditing(true);
+  //   const val = e.target as HTMLInputElement;
+  //   const newParams = new URLSearchParams(searchParams.toString());
 
-    if (val.value) {
-      newParams.set("q", val.value);
-    } else {
-      newParams.delete("q");
-    }
+  //   if (val.value) {
+  //     newParams.set("q", val.value);
+  //   } else {
+  //     newParams.delete("q");
+  //   }
 
-    router.push(createUrl("/products", newParams), { scroll: false });
-  };
+  //   router.push(createUrl("/products", newParams), { scroll: false });
+  // };
 
   useEffect(() => {
     const inputField = document.getElementById(
@@ -82,21 +81,21 @@ const ProductLayouts = ({
     };
   }, [isExpanded, setExpanded, isInputEditing]);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  // function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  //   e.preventDefault();
 
-    const val = e.target as HTMLFormElement;
-    const search = val.search as HTMLInputElement;
-    const newParams = new URLSearchParams(searchParams.toString());
+  //   const val = e.target as HTMLFormElement;
+  //   const search = val.search as HTMLInputElement;
+  //   const newParams = new URLSearchParams(searchParams.toString());
 
-    if (search.value) {
-      newParams.set("q", search.value);
-    } else {
-      newParams.delete("q");
-    }
+  //   if (search.value) {
+  //     newParams.set("q", search.value);
+  //   } else {
+  //     newParams.delete("q");
+  //   }
 
-    router.push(createUrl("/products", newParams));
-  }
+  //   router.push(createUrl("/products", newParams));
+  // }
 
   function layoutChange(isCard: string) {
     const newParams = new URLSearchParams(searchParams.toString());
@@ -115,7 +114,7 @@ const ProductLayouts = ({
         <div className="container">
           <div className="row gy-4">
             <div className="col-12 lg:col-3">
-              <div className=" lg:block relative">
+              <div className="lg:block relative">
                 <div className="block lg:hidden w-full">
                   <div className="filter-button-container mb-4">
                     <button {...getToggleProps()}>
@@ -145,7 +144,7 @@ const ProductLayouts = ({
                   </section>
                 </div>
 
-                <div>
+                {/* <div>
                   <h5 className="mb-2 lg:text-xl max-lg:hidden">Search</h5>
                   <form
                     onSubmit={onSubmit}
@@ -166,7 +165,7 @@ const ProductLayouts = ({
                       <IoSearch size={20} />
                     </button>
                   </form>
-                </div>
+                </div> */}
               </div>
             </div>
 

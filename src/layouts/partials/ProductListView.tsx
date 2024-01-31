@@ -278,8 +278,8 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                       )}
                     </div>
 
-                    <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8">
-                      {description.substring(0, 200)}...
+                    <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8 line-clamp-3">
+                      {description}
                     </p>
                     <AddToCart
                       variants={product?.variants}
