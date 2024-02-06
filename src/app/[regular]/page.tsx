@@ -38,14 +38,14 @@ const RegularPages = ({ params }: { params: { regular: string } }) => {
         image={image}
       />
       <PageHeader title={title} />
-      <section className="pt-8 xl:pt-16">
+      <section className="section">
         <div className="container">
           <div className="content">
             <MDXContent content={content} />
           </div>
         </div>
       </section>
-      <CallToAction data={callToAction} />
+      {/* <CallToAction data={callToAction} /> */}
     </>
   );
 };

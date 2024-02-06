@@ -111,7 +111,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
     <header
       className={`header z-30 ${settings.sticky_header && "sticky top-0"} ${navbarShadow ? "shadow-sm" : "shadow-none"}`}
     >
-      <nav className="navbar container">
+      <nav className="navbar flex-wrap container">
         <div className="order-1 flex items-center justify-between space-x-7 lg:space-x-14">
           <Logo />
 
@@ -190,7 +190,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
           </div>
         </div>
 
-        <div className="flex-1 lg:mx-14 order-2 hidden lg:block">
+        <div className="max-lg:mt-4 w-full lg:w-[55%] xl:w-[60%] lg:order-2 order-3">
           {settings.search && <SearchBar />}
         </div>
 
@@ -279,9 +279,9 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
         </div>
       </nav>
 
-      <div className="flex-1 mt-4 mx-4 block lg:hidden">
+      {/* <div className="flex-1 mt-4 mx-4 block lg:hidden">
         {settings.search && <SearchBar />}
-      </div>
+      </div> */}
     </header>
   );
 };

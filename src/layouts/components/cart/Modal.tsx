@@ -72,9 +72,13 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                   <div className="md:mt-16">
                     <FaShoppingCart size={76} />
                   </div>
-                  <p>Your shopping bag is empty</p>
-                  <Link href={"/products"} className="btn btn-primary w-full">
-                    Continue Shopping
+                  <p>Oops. Your Bag Is Empty.</p>
+                  <Link
+                    onClick={closeCart}
+                    href={"/products"}
+                    className="btn btn-primary w-full"
+                  >
+                    Don&apos;t Miss Out: Add to Cart
                   </Link>
                 </div>
               ) : (

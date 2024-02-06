@@ -155,7 +155,7 @@ const ShowProducts = async ({
 
       <div className="container">
         <div className="row">
-          <div className="col-3 hidden lg:block">
+          <div className="col-3 hidden lg:block -mt-14">
             <ProductFilters
               categories={categories}
               vendors={vendors}

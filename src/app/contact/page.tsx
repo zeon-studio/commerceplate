@@ -48,7 +48,7 @@ const Contact = async () => {
             </h2>
 
             <form
-              className="border border-border rounded-md p-10"
+              className="border border-border dark:border-darkmode-border rounded-md p-10"
               action={contact_form_action}
               method="POST"
             >
