@@ -141,17 +141,9 @@ const ProductLayouts = ({
                   </div>
                 </div>
 
-                <div className="flex gap-x-4 items-center font-medium text-sm md:text-base relative z-20">
-                  <p className="text-dark dark:text-darkmode-dark">Sort By</p>
-                  <DropdownMenu list={sorting} />
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 lg:col-3">
-              <div className="lg:block relative">
-                <div className="block lg:hidden w-full">
-                  <div className="filter-button-container mb-4 text-center">
+                <div className="flex gap-x-8">
+                  {/* Filter Button Trigger */}
+                  <div className="filter-button-container block lg:hidden mt-1">
                     <button {...getToggleProps()}>
                       {isExpanded ? (
                         <span className="font-medium text-base flex gap-x-1 items-center justify-center">
@@ -164,18 +156,48 @@ const ProductLayouts = ({
                       )}
                     </button>
                   </div>
+                  {/* Filter Button Trigger End */}
+
+                  <div className="flex gap-x-4 items-center font-medium text-sm md:text-base relative z-20">
+                    <p className="max-md:hidden text-dark dark:text-darkmode-dark">
+                      Sort By
+                    </p>
+                    <DropdownMenu list={sorting} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-12 lg:col-3">
+              <div className="lg:block relative">
+                <div className="block lg:hidden w-full">
+                  {/* <div className="filter-button-container mb-4 text-center">
+                    <button {...getToggleProps()}>
+                      {isExpanded ? (
+                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                          <TbFilterX /> Filter
+                        </span>
+                      ) : (
+                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                          <TbFilter /> Filter
+                        </span>
+                      )}
+                    </button>
+                  </div> */}
                   <section
                     className="collapse-container-class z-20 bg-body dark:bg-darkmode-body w-full px-4 rounded-md"
                     {...getCollapseProps()}
                   >
-                    <ProductFilters
-                      categories={categories}
-                      vendors={vendors}
-                      tags={tags}
-                      maxPriceData={maxPriceData}
-                      vendorsWithCounts={vendorsWithCounts}
-                      categoriesWithCounts={categoriesWithCounts}
-                    />
+                    <div className="pb-8">
+                      <ProductFilters
+                        categories={categories}
+                        vendors={vendors}
+                        tags={tags}
+                        maxPriceData={maxPriceData}
+                        vendorsWithCounts={vendorsWithCounts}
+                        categoriesWithCounts={categoriesWithCounts}
+                      />
+                    </div>
                   </section>
                 </div>
               </div>
