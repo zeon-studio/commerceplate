@@ -1,7 +1,7 @@
 "use client";
 
 import { AddToCart } from "@/components/cart/AddToCart";
-import LoadingCards from "@/components/skeleton/SkeletonCards";
+import SkeletonCards from "@/components/skeleton/SkeletonCards";
 import config from "@/config/config.json";
 import ImageFallback from "@/helpers/ImageFallback";
 import useLoadMore from "@/hooks/useLoadMore";
@@ -191,7 +191,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
   };
 
   if (isLoading) {
-    return <LoadingCards />;
+    return <SkeletonCards />;
   }
 
   const resultsText = products.length > 1 ? "results" : "result";
@@ -239,7 +239,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
                 width={312}
                 height={269}
                 alt={product.featuredImage?.altText || "fallback image"}
-                className="w-[312px] h-[150px] md:h-[269px] object-cover rounded-md border mx-auto"
+                className="w-full h-[200px] sm:w-[312px] md:h-[269px] object-cover rounded-md border mx-auto"
               />
 
               <AddToCart

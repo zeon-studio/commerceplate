@@ -6,6 +6,7 @@ import Tabs from "@/components/product/Tabs";
 import { VariantSelector } from "@/components/product/VariantSelector";
 import LoadingProductGallery from "@/components/skeleton/SkeletonProductGallery";
 import config from "@/config/config.json";
+import { getListPage } from "@/lib/contentParser";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import LatestProducts from "@/partials/FeaturedProducts";
 import { Metadata } from "next";
@@ -27,8 +28,13 @@ export const generateMetadata = async ({
 };
 
 const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
+  const paymentsAndDelivery = getListPage("sections/payments-and-delivery.md");
+  const { payment_methods, estimated_delivery } =
+    paymentsAndDelivery.frontmatter;
+
   const { currencySymbol } = config.shopify;
   const product = await getProduct(params.slug);
+
   if (!product) return notFound();
   const {
     id,
@@ -101,24 +107,26 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
 
               <div className="mb-8 md:mb-10">
                 <p className="p-2 max-md:text-sm rounded-md bg-theme-light dark:bg-darkmode-theme-light inline">
-                  Est. Delivery between 0 - 3 days
+                {estimated_delivery}
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
                 <h5 className="max-md:text-base">Payment: </h5>
-                {Array.from({ length: 7 }).map((_, i) => (
-                  <Image
-                    key={i}
-                    src={"/images/visa.png"}
-                    alt="payment"
-                    width={44}
-                    height={32}
-                  />
-                ))}
+                {payment_methods?.map(
+                  (payment: { name: string; image_url: string }) => (
+                    <Image
+                      key={payment.name}
+                      src={payment.image_url}
+                      alt={payment.name}
+                      width={44}
+                      height={32}
+                    />
+                  ),
+                )}
               </div>
 
-              <hr className="my-6" />
+              <hr className="my-6 border border-border dark:border-light" />
 
               <div className="flex gap-3 items-center mb-6">
                 <h5 className="max-md:text-base">Share:</h5>
@@ -126,7 +134,7 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
               </div>
 
               {tags.length > 0 && (
-                <div className="flex gap-3 items-center">
+                <div className="flex flex-wrap gap-3 items-center">
                   <h5 className="max-md:text-base">Tags:</h5>
                   <ShowTags tags={tags} />
                 </div>

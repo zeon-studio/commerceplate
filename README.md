@@ -2,7 +2,7 @@
 
 <p align=center>A free, production-ready Next.js template powered by Tailwind CSS and TypeScript, specifically designed for Shopify. Utilizes the Shopify Storefront API through GraphQL and providing everything you need to jumpstart your Next project and save valuable time.</p>
 
-<p align=center>Made with ♥ by<a href="https://zeon.studio/">Zeon Studio</a></p>
+<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
 <p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
 
 <h2 align="center"> <a target="_blank" href="https://commerceplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a  target="_blank" href="">Page Speed (80%)🚀</a>

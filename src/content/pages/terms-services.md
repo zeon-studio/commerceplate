@@ -5,7 +5,7 @@ description: "this is meta description"
 draft: false
 ---
 
-### Commerceplate Solutions License Agreement
+## Commerceplate Solutions License Agreement
 
 Your Rights Roxboro Lighting Limited trading as Onlinelightshop is a UK based company and complies with UK consumer law including the Distance Selling Regulations. This means that shopping with Onlinelightshop is safe. With 30 years experience in lighting retailing we aim to give a thorough and relable sevice, you’ll get your items delivered and we’ll sort out any problems you have. Our Terms and Conditions do not affect your statutory rights. Distance Selling Regulations give you the right to cancel an order and return any goods that may already have been dispatched, (see Returns for Refund) up to 7 days from receipt. Our returns policy allows 21 days.
 
@@ -13,7 +13,7 @@ Your Rights Roxboro Lighting Limited trading as Onlinelightshop is a UK based co
 
 <br/>
 
-#### Sales terms and conditions
+### Sales terms and conditions
 
 #### Pricing
 

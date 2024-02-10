@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { BsCart3 } from "react-icons/bs/index.js";
+import { BsCart3 } from "react-icons/bs";
 
 export default function OpenCart({
   className,

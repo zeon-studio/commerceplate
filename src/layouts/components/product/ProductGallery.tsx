@@ -93,7 +93,7 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
                 width={722}
                 height={623}
                 zoomType={"hover"}
-                className="mb-6 border rounded-md max-h-[623px]"
+                className="mb-6 border border-border dark:border-light rounded-md max-h-[623px]"
               />
             </SwiperSlide>
           ))}
@@ -131,10 +131,10 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
           <SwiperSlide key={item.url}>
             <div
               onClick={() => handleThumbSlideClick(item.url)}
-              className={`rounded-md border cursor-pointer overflow-hidden ${
+              className={`rounded-md cursor-pointer overflow-hidden ${
                 picUrl === item.url
                   ? "border border-darkmode-border dark:border-yellow-500"
-                  : ""
+                  : "border border-border dark:border-light"
               }`}
             >
               <Image

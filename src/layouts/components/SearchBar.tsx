@@ -1,53 +1,52 @@
 "use client";
+
 import { createUrl } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useCollapse } from "react-collapsed";
-import { IoSearch } from "react-icons/io5";
-import { TbZoomCancel } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import { IoSearch, IoClose } from "react-icons/io5";
 
-const SearchBar = ({
-  products,
-  searchValue,
-}: {
-  products?: any;
-  searchValue?: string;
-}) => {
+const SearchBar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
-    useCollapse({
-      hasDisabledAnimation: true,
-    });
+  const [isInputEditing, setInputEditing] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const inputField = document.getElementById(
-      "searchInputBar",
+      "searchInput",
     ) as HTMLInputElement;
-    if (inputField || searchParams.get("q")) {
+    if (isInputEditing || searchParams.get("q")) {
       inputField.focus();
     }
-    const handleOutsideClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (
-        !target.closest(".collapse-bar-class") &&
-        !target.closest(".search-button-class") &&
-        isExpanded
-      ) {
-        setExpanded(false);
-      }
-    };
+  }, [searchParams, isInputEditing]);
 
-    document.addEventListener("click", handleOutsideClick);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputEditing(true);
+    setInputValue(e.target.value);
 
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, [isExpanded, setExpanded, searchParams]);
+    const newParams = new URLSearchParams(searchParams.toString());
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (e.target.value) {
+      newParams.set("q", e.target.value);
+    } else {
+      newParams.delete("q");
+    }
+
+    router.push(createUrl("/products", newParams), { scroll: false });
+  };
+
+  const handleClear = () => {
+    setInputValue("");
+    setInputEditing(false);
+
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.delete("q");
+
+    router.push(createUrl("/products", newParams));
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setExpanded(false);
 
     const val = e.target as HTMLFormElement;
     const search = val.search as HTMLInputElement;
@@ -60,41 +59,37 @@ const SearchBar = ({
     }
 
     router.push(createUrl("/products", newParams));
-  }
+  };
 
   return (
-    <div className="flex items-center">
-      <button
-        className="search-button-class search-icon mr-4 md:mr-6 z-20"
-        {...getToggleProps()}
-      >
-        {isExpanded ? <TbZoomCancel size={20} /> : <IoSearch size={20} />}
+    <form
+      onSubmit={onSubmit}
+      className={`border border-border dark:border-darkmode-border rounded-full flex bg-light/10 pl-4 relative`}
+    >
+      <input
+        id="searchInput"
+        className="bg-transparent border-none search-input focus:ring-transparent p-2 w-full"
+        key={searchParams?.get("q")}
+        type="search"
+        name="search"
+        placeholder="Search for products"
+        autoComplete="off"
+        value={inputValue}
+        onChange={handleChange}
+      />
+      {inputValue && (
+        <button
+          type="button"
+          className="p-2 m-1 rounded-full"
+          onClick={handleClear}
+        >
+          <IoClose size={20} />
+        </button>
+      )}
+      <button className="search-icon p-2 m-1 rounded-full">
+        <IoSearch size={20} />
       </button>
-      <div
-        className="collapse-bar-class w-full absolute top-[56px] max-lg:left-0 lg:top-1 lg:w-52 lg:right-[180px]"
-        {...getCollapseProps()}
-      >
-        <div className="container">
-          <div className="row">
-            <form onSubmit={onSubmit} className="flex justify-center">
-              <input
-                id="searchInputBar"
-                key={searchParams?.get("q")}
-                type="search"
-                name="search"
-                placeholder="Search"
-                autoComplete="off"
-                defaultValue={searchParams?.get("q") || ""}
-                className="w-full rounded-s-md lg:rounded-md bg-light dark:bg-darkmode-light px-3 py-2 text-darkmode-dark dark:text-dark placeholder:text-darkmode-dark dark:placeholder:text-light focus:ring-transparent border-none search-input"
-              />
-              <button className="lg:hidden rounded-e-md lg:rounded-none px-2 cursor-pointer text-darkmode-dark dark:text-dark bg-light dark:bg-darkmode-light border-none">
-                <IoSearch size={25} />
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    </form>
   );
 };
 

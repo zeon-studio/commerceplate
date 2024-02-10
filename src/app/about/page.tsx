@@ -5,6 +5,7 @@ import PageHeader from "@/partials/PageHeader";
 import Testimonials from "@/partials/Testimonials";
 import Accordion from "@/shortcodes/Accordion";
 import { AboutUsItem, RegularPage } from "@/types";
+import { FaHeadset, FaBoxOpen, FaCheckCircle } from "react-icons/fa";
 
 const About = () => {
   const data: RegularPage = getListPage("about/_index.md");
@@ -19,6 +20,8 @@ const About = () => {
     testimonials_section_enable,
     testimonials_section_title,
     testimonials,
+    staff_section_enable,
+    staff
   } = frontmatter;
 
   return (
@@ -92,23 +95,25 @@ const About = () => {
             <h2>Our Staff</h2>
 
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-14">
-              {Array.from({ length: 4 }).map((_, idx) => (
+              { staff_section_enable &&
+             staff!.map((s, idx) => (
                 <div key={idx} className="border border-border rounded-lg">
                   <div className="py-6 space-y-2">
-                    <h3 className="h4">Olivia Harper</h3>
-                    <p>UI Designer</p>
+                    <h3 className="h4">{s.name}</h3>
+                    <p>{s.designation}</p>
                   </div>
-                  <div className="bg-theme-light lg:px-12 pt-11 rounded-b-xl mx-auto">
+                  <div className="bg-theme-light pt-11 rounded-b-xl mx-auto">
                     <ImageFallback
-                      src="/images/staff.png"
-                      alt="our staff"
+                      src={s.avatar}
+                      alt={`Staff-${s.name}`}
                       width={208}
                       height={224}
-                      className="mx-auto"
+                      className="mx-auto h-[224px]"
                     />
                   </div>
                 </div>
-              ))}
+              ))
+              }
             </div>
           </div>
         </div>
@@ -121,19 +126,28 @@ const About = () => {
 
             <div className="row justify-center gap-6 mt-14">
               <div className="col-6 md:col-5 lg:col-3">
-                <h3 className="md:h4 mb-4">24/7 Friendly Support</h3>
+                <div className="flex justify-center">
+                  <FaHeadset size={48} />
+                </div>
+                <h3 className="md:h4 mt-6 mb-4">24/7 Friendly Support</h3>
                 <p>Our support team always ready for you to 7 days a week</p>
               </div>
 
               <div className="col-6 md:col-5 lg:col-3">
-                <h3 className="md:h4 mb-4">7 Days Easy Return</h3>
+              <div className="flex justify-center">
+                  <FaBoxOpen size={48} />
+                </div>
+                <h3 className="md:h4 mt-6 mb-4">7 Days Easy Return</h3>
                 <p>
                   Product any fault within 7 days for an immediately exchange.
                 </p>
               </div>
 
               <div className="col-6 md:col-5 lg:col-3">
-                <h3 className="md:h4 mb-4">Quality Guaranteed</h3>
+              <div className="flex justify-center">
+                  <FaCheckCircle size={48} />
+                </div>
+                <h3 className="md:h4 mt-6 mb-4">Quality Guaranteed</h3>
                 <p>
                   If your product are not perfect, return them for a full refund
                 </p>
