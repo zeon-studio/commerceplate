@@ -57,7 +57,7 @@ const FeaturedProducts = ({ products }: { products: Product[] }) => {
                     {title}
                   </Link>
                 </h2>
-                <div className="flex justify-center items-center gap-x-2 mt-2 md:mt-4">
+                <div className="flex flex-wrap justify-center items-center gap-x-2 mt-2 md:mt-4">
                   <span className="text-base md:text-xl font-bold text-dark dark:text-darkmode-dark">
                     {currencySymbol}
                     {priceRange.minVariantPrice.amount} USD

@@ -78,7 +78,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                     href={"/products"}
                     className="btn btn-primary w-full"
                   >
-                    Don&apos;t Miss Out: Add to Cart
+                    Don&apos;t Miss Out: Add Product
                   </Link>
                 </div>
               ) : (

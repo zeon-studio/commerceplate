@@ -190,7 +190,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
           </div>
         </div>
 
-        <div className="max-lg:mt-4 w-full lg:w-[55%] xl:w-[60%] lg:order-2 order-3">
+        <div className="max-lg:mt-4 w-full lg:w-[45%] xl:w-[60%] lg:order-2 order-3">
           {settings.search && <SearchBar />}
         </div>
 

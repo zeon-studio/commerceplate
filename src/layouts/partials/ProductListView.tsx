@@ -198,34 +198,33 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
 
   return (
     <section>
-      <div className="space-y-10 pb-24 lg:pb-36 xl:pb-24 sticky top-28">
-        <div ref={targetElementRef} className="row">
-          {searchValue ? (
-            <p className="mb-4">
-              {products.length === 0
-                ? "There are no products that match "
-                : `Showing ${products.length} ${resultsText} for `}
-              <span className="font-bold">&quot;{searchValue}&quot;</span>
+      <div ref={targetElementRef} className="row">
+        {searchValue ? (
+          <p className="mb-4">
+            {products.length === 0
+              ? "There are no products that match "
+              : `Showing ${products.length} ${resultsText} for `}
+            <span className="font-bold">&quot;{searchValue}&quot;</span>
+          </p>
+        ) : null}
+
+        {products?.length === 0 && (
+          <div className="mx-auto pt-5 text-center">
+            <ImageFallback
+              className="mx-auto mb-6"
+              src="/images/no-search-found.png"
+              alt="no-search-found"
+              width={211}
+              height={184}
+            />
+            <h1 className="h2 mb-4">No Product Found!</h1>
+            <p>
+              We couldn&apos;t find what you filtered for. Try filtering again.
             </p>
-          ) : null}
+          </div>
+        )}
 
-          {products?.length === 0 && (
-            <div className="mx-auto pt-5 text-center">
-              <ImageFallback
-                className="mx-auto mb-6"
-                src="/images/no-search-found.png"
-                alt="no-search-found"
-                width={211}
-                height={184}
-              />
-              <h1 className="h2 mb-4">No Product Found!</h1>
-              <p>
-                We couldn&apos;t find what you filtered for. Try filtering
-                again.
-              </p>
-            </div>
-          )}
-
+        <div className="row space-y-10">
           {products?.map((product: Product) => {
             const {
               id,
@@ -242,7 +241,7 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
               variants.length > 0 ? variants[0].id : undefined;
 
             return (
-              <div className="col-12 mb-10" key={id}>
+              <div className="col-12" key={id}>
                 <div className="row">
                   <div className="col-4">
                     <ImageFallback
@@ -295,17 +294,17 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
               </div>
             );
           })}
-
-          <p
-            className={
-              hasNextPage || isLoading
-                ? "opacity-100 flex justify-center"
-                : "opacity-0"
-            }
-          >
-            <BiLoaderAlt className={`animate-spin`} size={30} />
-          </p>
         </div>
+
+        <p
+          className={
+            hasNextPage || isLoading
+              ? "opacity-100 flex justify-center"
+              : "opacity-0 hidden"
+          }
+        >
+          <BiLoaderAlt className={`animate-spin`} size={30} />
+        </p>
       </div>
     </section>
   );

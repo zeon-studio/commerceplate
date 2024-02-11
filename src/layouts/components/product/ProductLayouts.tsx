@@ -30,20 +30,6 @@ const ProductLayouts = ({
   const [isInputEditing, setInputEditing] = useState(false);
   const isListView = searchParams.get("layout") === "list";
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setInputEditing(true);
-  //   const val = e.target as HTMLInputElement;
-  //   const newParams = new URLSearchParams(searchParams.toString());
-
-  //   if (val.value) {
-  //     newParams.set("q", val.value);
-  //   } else {
-  //     newParams.delete("q");
-  //   }
-
-  //   router.push(createUrl("/products", newParams), { scroll: false });
-  // };
-
   useEffect(() => {
     const inputField = document.getElementById(
       "searchInput",
@@ -80,22 +66,6 @@ const ProductLayouts = ({
       document.removeEventListener("click", handleOutsideClick);
     };
   }, [isExpanded, setExpanded, isInputEditing]);
-
-  // function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-
-  //   const val = e.target as HTMLFormElement;
-  //   const search = val.search as HTMLInputElement;
-  //   const newParams = new URLSearchParams(searchParams.toString());
-
-  //   if (search.value) {
-  //     newParams.set("q", search.value);
-  //   } else {
-  //     newParams.delete("q");
-  //   }
-
-  //   router.push(createUrl("/products", newParams));
-  // }
 
   function layoutChange(isCard: string) {
     const newParams = new URLSearchParams(searchParams.toString());

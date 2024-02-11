@@ -40,7 +40,7 @@ const ModalCart: React.FC<ModalFilterProps> = ({ isVisible, onClose }) => {
             </div>
             <p>Oops. Your Bag Is Empty.</p>
             <Link href={"/product"} className="btn btn-primary w-full">
-              Don&apos;t Miss Out: Add to Cart
+              Don&apos;t Miss Out: Add Product
             </Link>
           </div>
         </div>

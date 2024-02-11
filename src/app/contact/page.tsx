@@ -42,7 +42,7 @@ const Contact = async () => {
 
       <section className="section">
         <div className="container">
-          <div className="mx-auto sm:col-9 md:col-10">
+          <div className="mx-auto lg:col-10">
             <h2 className="mb-14 text-center">
               We would love to hear from you!
             </h2>
