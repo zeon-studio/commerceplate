@@ -42,13 +42,13 @@ const Contact = async () => {
 
       <section className="section">
         <div className="container">
-          <div className="mx-auto sm:col-9 md:col-10">
+          <div className="mx-auto lg:col-10">
             <h2 className="mb-14 text-center">
               We would love to hear from you!
             </h2>
 
             <form
-              className="border border-border rounded-md p-10"
+              className="border border-border dark:border-darkmode-border rounded-md p-10"
               action={contact_form_action}
               method="POST"
             >

@@ -29,7 +29,7 @@
   li {
     @apply inline-block;
     a {
-      @apply h-6 w-6 p-1 flex items-center justify-center rounded-md bg-white hover:bg-primary hover:text-white duration-300 text-center leading-9 text-light border dark:bg-darkmode-theme-light dark:text-darkmode-light dark:hover:bg-white dark:hover:text-black;
+      @apply h-6 w-6 p-1 flex items-center justify-center rounded-md bg-white hover:bg-primary hover:text-white duration-300 text-center leading-9 text-light border border-border dark:border-light dark:bg-darkmode-theme-light dark:text-darkmode-light dark:hover:bg-white dark:hover:text-black;
       svg {
         @apply text-xs;
       }

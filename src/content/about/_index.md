@@ -22,6 +22,10 @@ Committed to delivering excellence, we prioritize customer satisfaction and prov
 # Frequently Asked Questions
 faq_section_title: "Frequently Asked Questions"
 faq_section_subtitle: "Our expertly crafted FAQ guide provides valuable insights on selecting the perfect table lamp to complement your decor and meet your specific lighting needs."
+button:
+  enable: true
+  label: "Contact Us"
+  link: "/contact"
 faqs:
   - title: "Can I customize lamps for client projects?"
     content: 'Yes, our platform allows customization for client projects, ensuring unique and tailored solutions. Yes, our platform allows customization for client projects, ensuring unique and tailored solutions.'
@@ -71,6 +75,24 @@ with the user in mind, making it easy to navigate and understand what software o
 software as a service (SaaS) solutions in an intuitive and visually appealing way. landing page is designed 
 with the user in mind, making it easy to navigate and understand what software offers.One of the standout features of Saastro SaaS Landingpage is its sleek."
 
+# Our Staff
+staff_section_enable: true
+staff:
+  - name: "Marvin McKinney"
+    designation: "Web Designer"
+    avatar: "/images/staff/staff.png"
+
+  - name: "Noah Anderson"
+    designation: "Java Engineer"
+    avatar: "/images/staff/staff.png"
+
+  - name: "Olivia Harper"
+    designation: "UI Designer"
+    avatar: "/images/staff/staff.png"
+
+  - name: "Benjamin Clarke"
+    designation: "Product Marketer"
+    avatar: "/images/staff/staff.png"
 ---
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.

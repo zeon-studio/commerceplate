@@ -11,7 +11,6 @@ import {
 } from "@/lib/shopify";
 import { PageInfo, Product } from "@/lib/shopify/types";
 import CallToAction from "@/partials/CallToAction";
-import PageHeader from "@/partials/PageHeader";
 import ProductCardView from "@/partials/ProductCardView";
 import ProductFilters from "@/partials/ProductFilters";
 import ProductListView from "@/partials/ProductListView";
@@ -156,7 +155,7 @@ const ShowProducts = async ({
 
       <div className="container">
         <div className="row">
-          <div className="col-3 hidden lg:block">
+          <div className="col-3 hidden lg:block -mt-14">
             <ProductFilters
               categories={categories}
               vendors={vendors}
@@ -185,7 +184,7 @@ const ProductsListPage = ({ searchParams }: { searchParams: any }) => {
 
   return (
     <>
-      <PageHeader title={"Products"} />
+      {/* <PageHeader title={"Products"} /> */}
       <Suspense fallback={<LoadingProducts />}>
         <ShowProducts searchParams={searchParams} />
       </Suspense>

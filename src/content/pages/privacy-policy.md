@@ -5,16 +5,16 @@ description: "this is meta description"
 draft: false
 ---
 
-#### This Privacy policy was published on 04 May 2023
+## This Privacy policy was published on 04 May 2023
 
-#### GDPR Compliance
+### GDPR Compliance
 
 We collect certain identifying personal data when you sign up to our Service such as your name, email address, PayPal address (if different from email address), and telephone number. The personal data we collect from you is disclosed only in accordance with our Terms of Service and/or this Privacy Policy.Conclude collects Slack account and access information from Users for the purposes of connecting to the Slack API and to authenticate access to information on the Conclude website. Whenever you visit our Site, we may
 
 collect non-identifying information from you, such as referring URL, browser, operating system, cookie information, and Internet Service Provider. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, this information alone cannot usually be used to identify you.The term "personal data" does not include any anonymized and aggregated data made on the basis of personal data, which are wholly owned by Conclude.
 <br/>
 
-#### About Commerceplate
+### About Commerceplate
 
 #### Service Provided As
 

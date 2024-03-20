@@ -4,7 +4,7 @@ import { Faq } from "@/types";
 import { useState } from "react";
 
 const Accordion = ({ faqs }: { faqs: Faq[] }) => {
-  const [activeTab, setActiveTab] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<number | null>(0);
 
   return (
     <>

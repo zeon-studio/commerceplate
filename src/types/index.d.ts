@@ -9,6 +9,7 @@ export type RegularPage = {
     about_us?: AboutUsItem[];
     contact_meta?: ContactUsItem[];
     faq_section_title?: string;
+    button?: Button;
     faq_section_subtitle?: string;
     faqs?: { title: string; content: string }[];
     testimonials_section_enable: boolean;
@@ -18,6 +19,12 @@ export type RegularPage = {
       designation: string;
       avatar: string;
       content: string;
+    }[];
+    staff_section_enable?: boolean;
+    staff?: {
+      name: string;
+      designation: string;
+      avatar: string;
     }[];
   };
   content: string;

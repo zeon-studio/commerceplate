@@ -1,7 +1,7 @@
 "use client";
 
 import { AddToCart } from "@/components/cart/AddToCart";
-import LoadingCards from "@/components/skeleton/SkeletonCards";
+import SkeletonCards from "@/components/skeleton/SkeletonCards";
 import config from "@/config/config.json";
 import ImageFallback from "@/helpers/ImageFallback";
 import useLoadMore from "@/hooks/useLoadMore";
@@ -191,41 +191,40 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
   };
 
   if (isLoading) {
-    return <LoadingCards />;
+    return <SkeletonCards />;
   }
 
   const resultsText = products.length > 1 ? "results" : "result";
 
   return (
     <section>
-      <div className="space-y-10 pb-24 lg:pb-36 xl:pb-24 sticky top-28">
-        <div ref={targetElementRef} className="row">
-          {searchValue ? (
-            <p className="mb-4">
-              {products.length === 0
-                ? "There are no products that match "
-                : `Showing ${products.length} ${resultsText} for `}
-              <span className="font-bold">&quot;{searchValue}&quot;</span>
+      <div ref={targetElementRef} className="row">
+        {searchValue ? (
+          <p className="mb-4">
+            {products.length === 0
+              ? "There are no products that match "
+              : `Showing ${products.length} ${resultsText} for `}
+            <span className="font-bold">&quot;{searchValue}&quot;</span>
+          </p>
+        ) : null}
+
+        {products?.length === 0 && (
+          <div className="mx-auto pt-5 text-center">
+            <ImageFallback
+              className="mx-auto mb-6"
+              src="/images/no-search-found.png"
+              alt="no-search-found"
+              width={211}
+              height={184}
+            />
+            <h1 className="h2 mb-4">No Product Found!</h1>
+            <p>
+              We couldn&apos;t find what you filtered for. Try filtering again.
             </p>
-          ) : null}
+          </div>
+        )}
 
-          {products?.length === 0 && (
-            <div className="mx-auto pt-5 text-center">
-              <ImageFallback
-                className="mx-auto mb-6"
-                src="/images/no-search-found.png"
-                alt="no-search-found"
-                width={211}
-                height={184}
-              />
-              <h1 className="h2 mb-4">No Product Found!</h1>
-              <p>
-                We couldn&apos;t find what you filtered for. Try filtering
-                again.
-              </p>
-            </div>
-          )}
-
+        <div className="row space-y-10">
           {products?.map((product: Product) => {
             const {
               id,
@@ -242,9 +241,9 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
               variants.length > 0 ? variants[0].id : undefined;
 
             return (
-              <div className="col-12 mb-10" key={id}>
+              <div className="col-12" key={id}>
                 <div className="row">
-                  <div className="col-12 md:col-4">
+                  <div className="col-4">
                     <ImageFallback
                       src={featuredImage?.url || "/images/product_image404.jpg"}
                       // fallback={'/images/category-1.png'}
@@ -255,7 +254,7 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                     />
                   </div>
 
-                  <div className="col-12 md:col-8 py-3 max-md:pt-4">
+                  <div className="col-8 py-3 max-md:pt-4">
                     <h2 className="font-bold md:font-normal h4">
                       <Link href={`/products/${handle}`}>{title}</Link>
                     </h2>
@@ -278,8 +277,8 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                       )}
                     </div>
 
-                    <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8">
-                      {description.substring(0, 200)}...
+                    <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8 line-clamp-1 md:line-clamp-3">
+                      {description}
                     </p>
                     <AddToCart
                       variants={product?.variants}
@@ -295,17 +294,17 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
               </div>
             );
           })}
-
-          <p
-            className={
-              hasNextPage || isLoading
-                ? "opacity-100 flex justify-center"
-                : "opacity-0"
-            }
-          >
-            <BiLoaderAlt className={`animate-spin`} size={30} />
-          </p>
         </div>
+
+        <p
+          className={
+            hasNextPage || isLoading
+              ? "opacity-100 flex justify-center"
+              : "opacity-0 hidden"
+          }
+        >
+          <BiLoaderAlt className={`animate-spin`} size={30} />
+        </p>
       </div>
     </section>
   );

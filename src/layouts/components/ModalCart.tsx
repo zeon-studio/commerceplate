@@ -38,9 +38,9 @@ const ModalCart: React.FC<ModalFilterProps> = ({ isVisible, onClose }) => {
             <div>
               <FaShoppingCart size={76} />
             </div>
-            <p>Your shopping bag is empty</p>
+            <p>Oops. Your Bag Is Empty.</p>
             <Link href={"/product"} className="btn btn-primary w-full">
-              Continue Shopping
+              Don&apos;t Miss Out: Add Product
             </Link>
           </div>
         </div>

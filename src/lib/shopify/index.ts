@@ -78,7 +78,7 @@ type ExtractVariables<T> = T extends { variables: object }
   : never;
 
 export async function shopifyFetch<T>({
-  cache = "force-cache",
+  cache = "no-store",
   headers,
   query,
   tags,
@@ -582,7 +582,6 @@ export async function getProducts({
       sortKey,
       cursor,
     },
-    cache: "force-cache",
   });
 
   const pageInfo = res.body.data?.products?.pageInfo;
@@ -600,7 +599,6 @@ export async function getHighestProductPrice(): Promise<{
   try {
     const res = await shopifyFetch<any>({
       query: getHighestProductPriceQuery,
-      cache: "force-cache",
     });
 
     // Extract and return the relevant data

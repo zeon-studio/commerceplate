@@ -20,12 +20,12 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
 
   return (
     <Tab.Group>
-      <Tab.List className="border-b-2 relative">
+      <Tab.List className="border-b-2 relative border-border dark:border-light">
         <Tab
           className={({ selected }) =>
             `${
               selected
-                ? "border-t-2 border-l-2 border-r-2 border-b-0 bg-body dark:bg-darkmode-body"
+                ? "border-t-2 border-l-2 border-r-2 border-b-0 bg-body dark:bg-darkmode-body border-border dark:border-light"
                 : "border-transparent"
             } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md absolute -top-[46px] left-0 h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0`
           }
@@ -37,7 +37,7 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
             className={({ selected }) =>
               `${
                 selected
-                  ? "border-t-2 border-l-2 border-r-2 border-b-0 bg-body dark:bg-darkmode-body"
+                  ? "border-t-2 border-l-2 border-r-2 border-b-0 border-border dark:border-light bg-body dark:bg-darkmode-body"
                   : "border-transparent"
               } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md absolute -top-[46px] left-32 h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0`
             }
@@ -46,7 +46,7 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
           </Tab>
         )}
       </Tab.List>
-      <Tab.Panels className="border-l-2 border-r-2 border-b-2 rounded-bl-md rounded-br-md p-6">
+      <Tab.Panels className="border-l-2 border-r-2 border-b-2 border-border dark:border-light rounded-bl-md rounded-br-md p-6">
         <Tab.Panel>
           <div
             className="space-y-4"
