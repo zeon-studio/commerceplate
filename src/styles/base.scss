@@ -1,9 +1,9 @@
 html {
-  @apply text-base;
+  @apply text-base-sm md:text-base;
 }
 
 body {
-  @apply bg-body font-primary font-normal leading-relaxed text-text dark:bg-darkmode-body dark:text-darkmode-text;
+  @apply bg-body dark:bg-darkmode-body font-primary font-normal leading-relaxed text-text dark:text-darkmode-text;
 }
 
 h1,
@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary leading-tight text-dark dark:text-darkmode-dark font-bold;
+  @apply font-secondary font-bold leading-tight text-dark dark:text-darkmode-dark;
 }
 
 h1,
@@ -32,7 +32,7 @@ h3,
 
 h4,
 .h4 {
-  @apply text-h4-sm md:text-h4;
+  @apply text-h4;
 }
 
 h5,
@@ -52,4 +52,8 @@ strong {
 
 code {
   @apply after:border-none;
+}
+
+blockquote > p {
+  @apply my-0 #{!important};
 }
