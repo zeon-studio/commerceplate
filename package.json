@@ -1,6 +1,6 @@
 {
   "name": "commerceplate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shopify Storefront Boilerplate with Next.js, Tailwind CSS, and Shopify SDK",
   "author": "zeon.studio",
   "license": "MIT",
