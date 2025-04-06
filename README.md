@@ -113,7 +113,28 @@
 
 - We have the option to create additional collections for products.
   ![Screenshot_15](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/15.png)
-  
+
+## 🚀 Setting Up the Hero Slider
+
+1. Go to the file `/src/config/config.json` in your Shopify project and find the 'hero_slider' section. You’ll see something like this:
+
+   ```json
+   "shopify": {
+     "currencySymbol": "৳",
+     "currencyCode": "BDT",
+     "collections": {
+       "hero_slider": "hidden-homepage-carousel",
+       "featured_products": "featured-products"
+     }
+   }
+   ```
+
+2. Change the 'hero_slider' collection name to something of your choice.
+
+3. Then, go to your Shopify Partner Dashboard, navigate to Products > Collections, and create a collection with the same name you set in the config file (e.g., 'hidden-homepage-carousel').
+
+4. Add the products you want to display in the hero slider to this collection.
+
 ### 👉 Install Dependencies
 
 ```bash
