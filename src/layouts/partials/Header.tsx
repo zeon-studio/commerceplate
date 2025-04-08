@@ -191,7 +191,11 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
         </div>
 
         <div className="max-lg:mt-4 w-full lg:w-[45%] xl:w-[60%] lg:order-2 order-3">
-          {settings.search && <SearchBar />}
+          {settings.search && (
+            <Suspense>
+              <SearchBar />
+            </Suspense>
+          )}
         </div>
 
         <div className="order-2 lg:order-3 ml-auto flex items-center lg:ml-0">
@@ -278,10 +282,6 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
           </div>
         </div>
       </nav>
-
-      {/* <div className="flex-1 mt-4 mx-4 block lg:hidden">
-        {settings.search && <SearchBar />}
-      </div> */}
     </header>
   );
 };

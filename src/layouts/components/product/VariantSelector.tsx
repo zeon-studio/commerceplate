@@ -4,6 +4,7 @@ import { ProductOption, ProductVariant } from "@/lib/shopify/types";
 import { createUrl } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import { ImageItem } from "./ProductGallery";
 import VariantDropDown from "./VariantDropDown";
@@ -202,7 +203,9 @@ export function VariantSelector({
       {sizeOption && (
         <div className="mb-8 mt-8">
           <h5 className="mb-2 max-md:text-base">{sizeOption.name}</h5>
-          <VariantDropDown sizeOption={sizeOption} options={options} />
+          <Suspense>
+            <VariantDropDown sizeOption={sizeOption} options={options} />
+          </Suspense>
         </div>
       )}
     </div>

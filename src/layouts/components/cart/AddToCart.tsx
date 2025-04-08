@@ -4,8 +4,8 @@ import { ProductVariant } from "@/lib/shopify/types";
 import { addItem } from "@/lib/utils/cartActions";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React, { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { BiLoaderAlt } from "react-icons/bi";
 
 function SubmitButton({
@@ -86,7 +86,7 @@ export function AddToCart({
   handle: string | null;
   defaultVariantId: string | undefined;
 }) {
-  const [message, formAction] = useFormState(addItem, null);
+  const [message, formAction] = useActionState(addItem, null);
   const searchParams = useSearchParams();
 
   // Find the variant based on selected options

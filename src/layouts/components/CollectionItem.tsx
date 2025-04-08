@@ -1,7 +1,7 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { createUrl } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const CollectionItem = ({
   title,

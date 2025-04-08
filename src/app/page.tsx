@@ -1,4 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
+export const dynamic = "force-dynamic";
+
 import CollectionsSlider from "@/components/CollectionsSlider";
 import HeroSlider from "@/components/HeroSlider";
 import SkeletonCategory from "@/components/skeleton/SkeletonCategory";
@@ -57,7 +58,6 @@ const Home = () => {
             <h2>Collections</h2>
           </div>
           <Suspense fallback={<SkeletonCategory />}>
-            {/* @ts-ignore */}
             <ShowCollections />
           </Suspense>
         </div>

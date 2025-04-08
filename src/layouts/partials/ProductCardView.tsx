@@ -10,7 +10,7 @@ import { getCollectionProducts, getProducts } from "@/lib/shopify";
 import { PageInfo, Product } from "@/lib/shopify/types";
 import { titleify } from "@/lib/utils/textConverter";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { BiLoaderAlt } from "react-icons/bi";
 
 const ProductCardView = ({ searchParams }: { searchParams: any }) => {
@@ -162,7 +162,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
   const endCursor = pageInfo?.endCursor || "";
   const hasNextPage = pageInfo?.hasNextPage || false;
 
-  useLoadMore(targetElementRef, () => {
+  useLoadMore(targetElementRef as React.RefObject<HTMLElement>, () => {
     if (hasNextPage && !isLoading) {
       fetchDataWithNewCursor(endCursor);
     }
@@ -243,15 +243,17 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
                   className="w-full h-[200px] sm:w-[312px] md:h-[269px] object-cover rounded-md border mx-auto"
                 />
 
-                <AddToCart
-                  variants={product?.variants}
-                  availableForSale={product?.availableForSale}
-                  handle={product?.handle}
-                  defaultVariantId={defaultVariantId}
-                  stylesClass={
-                    "btn btn-primary max-md:btn-sm z-10 absolute bottom-24 md:bottom-0 left-1/2 transform -translate-x-1/2 md:translate-y-full md:group-hover:-translate-y-6 duration-300 ease-in-out whitespace-nowrap drop-shadow-md"
-                  }
-                />
+                <Suspense>
+                  <AddToCart
+                    variants={product?.variants}
+                    availableForSale={product?.availableForSale}
+                    handle={product?.handle}
+                    defaultVariantId={defaultVariantId}
+                    stylesClass={
+                      "btn btn-primary max-md:btn-sm z-10 absolute bottom-24 md:bottom-0 left-1/2 transform -translate-x-1/2 md:translate-y-full md:group-hover:-translate-y-6 duration-300 ease-in-out whitespace-nowrap drop-shadow-md"
+                    }
+                  />
+                </Suspense>
               </div>
               <div className="py-2 md:py-4 text-center z-20">
                 <h2 className="font-medium text-base md:text-xl">

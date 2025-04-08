@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ListItem } from "../product/ProductLayouts";
 import { FilterDropdownItem } from "./FilterDropdownItem";
 
@@ -48,9 +48,8 @@ const DropdownMenu = ({ list }: { list: ListItem[] }) => {
       >
         <div>{active}</div>
         <svg
-          className={`-mr-1 h-5 w-5 text-gray-400 transform ${
-            openSelect ? "rotate-180" : ""
-          } transition-transform`}
+          className={`-mr-1 h-5 w-5 text-gray-400 transform ${openSelect ? "rotate-180" : ""
+            } transition-transform`}
           fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden="true"
@@ -76,7 +75,9 @@ const DropdownMenu = ({ list }: { list: ListItem[] }) => {
             aria-labelledby="menu-button"
           >
             {list.map((item: ListItem, i) => (
-              <FilterDropdownItem key={i} item={item} />
+              <Suspense key={i}>
+                <FilterDropdownItem item={item} />
+              </Suspense>
             ))}
           </div>
         </div>

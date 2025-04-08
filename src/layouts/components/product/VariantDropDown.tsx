@@ -1,9 +1,9 @@
 "use client";
 
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
 import { createUrl } from "@/lib/utils";
+import { Listbox, Transition } from "@headlessui/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Fragment, useState } from "react";
 
 const VariantDropDown = ({ sizeOption }: any) => {
   const [selected, setSelected] = useState("Select One");
@@ -69,10 +69,10 @@ const VariantDropDown = ({ sizeOption }: any) => {
                         {size}
                       </span>
                       {/* {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                          <BsCheckLg className="h-5 w-5" aria-hidden="true" />
-                        </span>
-                      ) : null} */}
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                      <BsCheckLg className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  ) : null} */}
                     </>
                   )}
                 </Listbox.Option>

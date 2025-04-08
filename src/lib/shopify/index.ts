@@ -112,10 +112,7 @@ export async function shopifyFetch<T>({
       throw body.errors[0];
     }
 
-    return {
-      status: result.status,
-      body,
-    };
+    return { status: result.status, body };
   } catch (e) {
     if (isShopifyError(e)) {
       throw {
@@ -126,10 +123,7 @@ export async function shopifyFetch<T>({
       };
     }
 
-    throw {
-      error: e,
-      query,
-    };
+    throw { error: e, query };
   }
 }
 
@@ -139,16 +133,10 @@ const removeEdgesAndNodes = (array: Connection<any>) => {
 
 const reshapeCart = (cart: ShopifyCart): Cart => {
   if (!cart.cost?.totalTaxAmount) {
-    cart.cost.totalTaxAmount = {
-      amount: "0.0",
-      currencyCode: "USD",
-    };
+    cart.cost.totalTaxAmount = { amount: "0.0", currencyCode: "USD" };
   }
 
-  return {
-    ...cart,
-    lines: removeEdgesAndNodes(cart.lines),
-  };
+  return { ...cart, lines: removeEdgesAndNodes(cart.lines) };
 };
 
 const reshapeCollection = (
@@ -158,10 +146,7 @@ const reshapeCollection = (
     return undefined;
   }
 
-  return {
-    ...collection,
-    path: `/products/${collection.handle}`,
-  };
+  return { ...collection, path: `/products/${collection.handle}` };
 };
 
 const reshapeCollections = (collections: ShopifyCollection[]) => {
@@ -243,10 +228,7 @@ export async function addToCart(
 ): Promise<Cart> {
   const res = await shopifyFetch<ShopifyAddToCartOperation>({
     query: addToCartMutation,
-    variables: {
-      cartId,
-      lines,
-    },
+    variables: { cartId, lines },
     cache: "no-store",
   });
   return reshapeCart(res.body.data.cartLinesAdd.cart);
@@ -258,10 +240,7 @@ export async function removeFromCart(
 ): Promise<Cart> {
   const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
     query: removeFromCartMutation,
-    variables: {
-      cartId,
-      lineIds,
-    },
+    variables: { cartId, lineIds },
     cache: "no-store",
   });
 
@@ -274,10 +253,7 @@ export async function updateCart(
 ): Promise<Cart> {
   const res = await shopifyFetch<ShopifyUpdateCartOperation>({
     query: editCartItemsMutation,
-    variables: {
-      cartId,
-      lines,
-    },
+    variables: { cartId, lines },
     cache: "no-store",
   });
 
@@ -306,9 +282,7 @@ export async function getCollection(
   const res = await shopifyFetch<ShopifyCollectionOperation>({
     query: getCollectionQuery,
     tags: [TAGS.collections],
-    variables: {
-      handle,
-    },
+    variables: { handle },
   });
 
   return reshapeCollection(res.body.data.collection);
@@ -360,9 +334,7 @@ export async function getCollectionProducts({
 export async function createCustomer(input: CustomerInput): Promise<any> {
   const res = await shopifyFetch<registerOperation>({
     query: createCustomerMutation,
-    variables: {
-      input,
-    },
+    variables: { input },
     cache: "no-store",
   });
   // console.log(res.body.data.customerCreate.customerUserErrors)
@@ -394,9 +366,7 @@ export async function getCustomerAccessToken({
 export async function getUserDetails(accessToken: string): Promise<user> {
   const response = await shopifyFetch<userOperation>({
     query: getUserDetailsQuery,
-    variables: {
-      input: accessToken,
-    },
+    variables: { input: accessToken },
     cache: "no-store",
   });
 
@@ -435,9 +405,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
     query: getMenuQuery,
     tags: [TAGS.collections],
-    variables: {
-      handle,
-    },
+    variables: { handle },
   });
 
   return (
@@ -472,9 +440,7 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
-    variables: {
-      handle,
-    },
+    variables: { handle },
   });
 
   return reshapeProduct(res.body.data.product, false);
@@ -486,9 +452,7 @@ export async function getProductRecommendations(
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,
     tags: [TAGS.products],
-    variables: {
-      productId,
-    },
+    variables: { productId },
   });
 
   return reshapeProducts(res.body.data.productRecommendations);
@@ -506,11 +470,7 @@ export async function getVendors({
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getVendorsQuery,
     tags: [TAGS.products],
-    variables: {
-      query,
-      reverse,
-      sortKey,
-    },
+    variables: { query, reverse, sortKey },
   });
 
   const products = removeEdgesAndNodes(res.body.data.products);
@@ -552,11 +512,7 @@ export async function getTags({
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
     tags: [TAGS.products],
-    variables: {
-      query,
-      reverse,
-      sortKey,
-    },
+    variables: { query, reverse, sortKey },
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
@@ -576,12 +532,7 @@ export async function getProducts({
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
     tags: [TAGS.products],
-    variables: {
-      query,
-      reverse,
-      sortKey,
-      cursor,
-    },
+    variables: { query, reverse, sortKey, cursor },
   });
 
   const pageInfo = res.body.data?.products?.pageInfo;
@@ -597,9 +548,7 @@ export async function getHighestProductPrice(): Promise<{
   currencyCode: string;
 } | null> {
   try {
-    const res = await shopifyFetch<any>({
-      query: getHighestProductPriceQuery,
-    });
+    const res = await shopifyFetch<any>({ query: getHighestProductPriceQuery });
 
     // Extract and return the relevant data
     const highestProduct = res?.body?.data?.products?.edges[0]?.node;
@@ -626,7 +575,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
     "products/delete",
     "products/update",
   ];
-  const topic = headers().get("x-shopify-topic") || "unknown";
+  const topic = (await headers()).get("x-shopify-topic") || "unknown";
   const secret = req.nextUrl.searchParams.get("secret");
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);

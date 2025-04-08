@@ -10,7 +10,7 @@ import { getCollectionProducts, getProducts } from "@/lib/shopify";
 import { PageInfo, Product } from "@/lib/shopify/types";
 import { titleify } from "@/lib/utils/textConverter";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { BiLoaderAlt } from "react-icons/bi";
 
 const ProductListView = ({ searchParams }: { searchParams: any }) => {
@@ -162,7 +162,7 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
   const endCursor = pageInfo?.endCursor || "";
   const hasNextPage = pageInfo?.hasNextPage || false;
 
-  useLoadMore(targetElementRef, () => {
+  useLoadMore(targetElementRef as React.RefObject<HTMLElement>, () => {
     if (hasNextPage && !isLoading) {
       fetchDataWithNewCursor(endCursor);
     }
@@ -280,15 +280,17 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                     <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8 line-clamp-1 md:line-clamp-3">
                       {description}
                     </p>
-                    <AddToCart
-                      variants={product?.variants}
-                      availableForSale={product?.availableForSale}
-                      handle={handle}
-                      defaultVariantId={defaultVariantId}
-                      stylesClass={
-                        "btn btn-outline-primary max-md:btn-sm drop-shadow-md"
-                      }
-                    />
+                    <Suspense>
+                      <AddToCart
+                        variants={product?.variants}
+                        availableForSale={product?.availableForSale}
+                        handle={handle}
+                        defaultVariantId={defaultVariantId}
+                        stylesClass={
+                          "btn btn-outline-primary max-md:btn-sm drop-shadow-md"
+                        }
+                      />
+                    </Suspense>
                   </div>
                 </div>
               </div>

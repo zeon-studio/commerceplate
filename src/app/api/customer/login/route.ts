@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-
-    cookies().set("token", token);
+    const cookieStore = await cookies();
+    cookieStore.set("token", token);
 
     const { customer } = await getUserDetails(token);
 

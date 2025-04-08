@@ -3,7 +3,7 @@
 import { createUrl } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IoSearch, IoClose } from "react-icons/io5";
+import { IoClose, IoSearch } from "react-icons/io5";
 
 const SearchBar = () => {
   const router = useRouter();

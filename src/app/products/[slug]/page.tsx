@@ -9,16 +9,14 @@ import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import LatestProducts from "@/partials/FeaturedProducts";
-import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> => {
+export const generateMetadata = async (props: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const params = await props.params;
   const product = await getProduct(params.slug);
   if (!product) return notFound();
   return {
@@ -26,6 +24,17 @@ export const generateMetadata = async ({
     description: product.seo.description || product.description,
   };
 };
+
+const ProductSingle = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
+  return (
+    <Suspense fallback={<LoadingProductGallery />}>
+      <ShowProductSingle params={params} />
+    </Suspense>
+  );
+};
+
+export default ProductSingle;
 
 const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
   const paymentsAndDelivery = getListPage("sections/payments-and-delivery.md");
@@ -60,7 +69,10 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
           <div className="row justify-center">
             {/* right side contents  */}
             <div className="col-10 md:col-8 lg:col-6">
-              <ProductGallery images={images} />
+              <Suspense>
+                {" "}
+                <ProductGallery images={images} />
+              </Suspense>
             </div>
 
             {/* left side contents  */}
@@ -96,18 +108,20 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
               </div>
 
               <div className="flex gap-4 mt-8 md:mt-10 mb-6">
-                <AddToCart
-                  variants={product?.variants}
-                  availableForSale={product?.availableForSale}
-                  stylesClass={"btn max-md:btn-sm btn-primary"}
-                  handle={null}
-                  defaultVariantId={defaultVariantId}
-                />
+                <Suspense>
+                  <AddToCart
+                    variants={product?.variants}
+                    availableForSale={product?.availableForSale}
+                    stylesClass={"btn max-md:btn-sm btn-primary"}
+                    handle={null}
+                    defaultVariantId={defaultVariantId}
+                  />
+                </Suspense>
               </div>
 
               <div className="mb-8 md:mb-10">
                 <p className="p-2 max-md:text-sm rounded-md bg-theme-light dark:bg-darkmode-theme-light inline">
-                {estimated_delivery}
+                  {estimated_delivery}
                 </p>
               </div>
 
@@ -136,7 +150,9 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
               {tags.length > 0 && (
                 <div className="flex flex-wrap gap-3 items-center">
                   <h5 className="max-md:text-base">Tags:</h5>
-                  <ShowTags tags={tags} />
+                  <Suspense>
+                    <ShowTags tags={tags} />
+                  </Suspense>
                 </div>
               )}
             </div>
@@ -173,13 +189,3 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
     </>
   );
 };
-
-const ProductSingle = ({ params }: { params: { slug: string } }) => {
-  return (
-    <Suspense fallback={<LoadingProductGallery />}>
-      <ShowProductSingle params={params} />
-    </Suspense>
-  );
-};
-
-export default ProductSingle;

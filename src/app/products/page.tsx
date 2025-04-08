@@ -128,7 +128,6 @@ const ShowProducts = async ({
     // Fetch all products
     productsData = await getProducts({ sortKey, reverse, cursor });
   }
-  // console.log(categoriesWithCounts)
   const categories = await getCollections();
   const vendors = await getVendors({});
 
@@ -144,26 +143,30 @@ const ShowProducts = async ({
 
   return (
     <>
-      <ProductLayouts
-        categories={categories}
-        vendors={vendors}
-        tags={tags}
-        maxPriceData={maxPriceData}
-        vendorsWithCounts={vendorsWithCounts}
-        categoriesWithCounts={categoriesWithCounts}
-      />
+      <Suspense>
+        <ProductLayouts
+          categories={categories}
+          vendors={vendors}
+          tags={tags}
+          maxPriceData={maxPriceData}
+          vendorsWithCounts={vendorsWithCounts}
+          categoriesWithCounts={categoriesWithCounts}
+        />
+      </Suspense>
 
       <div className="container">
         <div className="row">
           <div className="col-3 hidden lg:block -mt-14">
-            <ProductFilters
-              categories={categories}
-              vendors={vendors}
-              tags={tags}
-              maxPriceData={maxPriceData!}
-              vendorsWithCounts={vendorsWithCounts}
-              categoriesWithCounts={categoriesWithCounts}
-            />
+            <Suspense>
+              <ProductFilters
+                categories={categories}
+                vendors={vendors}
+                tags={tags}
+                maxPriceData={maxPriceData!}
+                vendorsWithCounts={vendorsWithCounts}
+                categoriesWithCounts={categoriesWithCounts}
+              />
+            </Suspense>
           </div>
 
           <div className="col-12 lg:col-9">
@@ -179,7 +182,10 @@ const ShowProducts = async ({
   );
 };
 
-const ProductsListPage = ({ searchParams }: { searchParams: any }) => {
+const ProductsListPage = async (props: {
+  searchParams: Promise<SearchParams>;
+}) => {
+  const searchParams = await props.searchParams;
   const callToAction = getListPage("sections/call-to-action.md");
 
   return (

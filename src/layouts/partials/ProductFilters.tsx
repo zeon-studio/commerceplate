@@ -6,6 +6,7 @@ import { ShopifyCollection } from "@/lib/shopify/types";
 import { createUrl } from "@/lib/utils";
 import { slugify } from "@/lib/utils/textConverter";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { BsCheckLg } from "react-icons/bs";
 
 const ProductFilters = ({
@@ -60,7 +61,9 @@ const ProductFilters = ({
         <h5 className="mb-2 lg:text-xl">Select Price Range</h5>
         <hr className="dark:border-darkmode-border" />
         <div className="pt-4">
-          <RangeSlider maxPriceData={maxPriceData} />
+          <Suspense>
+            <RangeSlider maxPriceData={maxPriceData} />
+          </Suspense>
         </div>
       </div>
 
@@ -148,7 +151,10 @@ const ProductFilters = ({
           <h5 className="mb-2 mt-8 lg:mt-10 lg:text-xl">Tags</h5>
           <hr className="dark:border-darkmode-border" />
           <div className="mt-4">
-            <ShowTags tags={tags} />
+            <Suspense>
+              {" "}
+              <ShowTags tags={tags} />
+            </Suspense>
           </div>
         </div>
       )}

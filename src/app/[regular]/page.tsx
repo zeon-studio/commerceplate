@@ -14,10 +14,13 @@ export const generateStaticParams = () => {
 };
 
 // For all regular pages
-const RegularPages = ({ params }: { params: { regular: string } }) => {
+const RegularPages = async (props: {
+  params: Promise<{ regular: string }>;
+}) => {
+  const params = await props.params;
   const regularData = getSinglePage("pages");
   const data = regularData.find(
-    (page: RegularPage) => page.slug === params.regular
+    (page: RegularPage) => page.slug === params.regular,
   );
 
   if (!data) return notFound();
@@ -42,6 +45,7 @@ const RegularPages = ({ params }: { params: { regular: string } }) => {
           </div>
         </div>
       </section>
+
       {/* <CallToAction data={callToAction} /> */}
     </>
   );

@@ -8,7 +8,7 @@ import {
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
 import InnerImageZoom from "react-inner-image-zoom";
-import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import "react-inner-image-zoom/lib/styles.min.css";
 import type { Swiper as TSwiper } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -30,7 +30,6 @@ const ProductGallery = ({ images }: { images: ImageItem[] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [loadingThumb, setLoadingThumb] = useState(true);
-  // const [picUrl, setPicUrl] = useState(images.length > 0 ? images[0].url : "");
   const [picUrl, setPicUrl] = useState("");
 
   const searchParams = useSearchParams().get("color");

@@ -2,11 +2,12 @@ import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader";
+import SeoMeta from "@/partials/SeoMeta";
 import Testimonials from "@/partials/Testimonials";
 import Accordion from "@/shortcodes/Accordion";
 import { AboutUsItem, RegularPage } from "@/types";
 import Link from "next/link";
-import { FaHeadset, FaBoxOpen, FaCheckCircle } from "react-icons/fa";
+import { FaBoxOpen, FaCheckCircle, FaHeadset } from "react-icons/fa";
 
 const About = () => {
   const data: RegularPage = getListPage("about/_index.md");
@@ -28,12 +29,7 @@ const About = () => {
 
   return (
     <>
-      {/* <SeoMeta
-        title={title}
-        meta_title={meta_title}
-        description={description}
-        image={image}
-      /> */}
+      <SeoMeta {...frontmatter} />
 
       <PageHeader title={title} />
 

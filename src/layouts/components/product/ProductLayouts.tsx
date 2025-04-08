@@ -4,7 +4,7 @@ import { SortFilterItem, sorting } from "@/lib/constants";
 import { createUrl } from "@/lib/utils";
 import ProductFilters from "@/partials/ProductFilters";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useCollapse } from "react-collapsed";
 import { BsGridFill } from "react-icons/bs";
 import { FaList } from "react-icons/fa6";
@@ -79,86 +79,77 @@ const ProductLayouts = ({
   }
 
   return (
-    <>
-      <section className="pt-4">
-        <div className="container">
-          <div className="row">
-            <div className="col-3 max-lg:hidden" />
+    <section className="pt-4">
+      <div className="container">
+        <div className="row">
+          <div className="col-3 max-lg:hidden" />
 
-            <div className="col-12 lg:col-9">
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex gap-x-4 items-center font-medium text-xs md:text-base">
-                  <p className="max-md:hidden text-dark dark:text-darkmode-dark">
-                    Views
-                  </p>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => layoutChange("card")}
-                      className={`btn border dark:border-darkmode-border ${
-                        isListView ? "btn-outline-primary" : "btn-primary"
-                      } p-2 hover:scale-105 duration-300`}
-                    >
-                      <BsGridFill />
-                    </button>
-                    <button
-                      onClick={() => layoutChange("list")}
-                      className={`btn border dark:border-darkmode-border ${
-                        isListView ? "btn-primary" : "btn-outline-primary"
-                      } p-2 hover:scale-105 duration-300`}
-                    >
-                      <FaList />
-                    </button>
-                  </div>
+          <div className="col-12 lg:col-9">
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex gap-x-4 items-center font-medium text-xs md:text-base">
+                <p className="max-md:hidden text-dark dark:text-darkmode-dark">
+                  Views
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => layoutChange("card")}
+                    className={`btn border dark:border-darkmode-border ${
+                      isListView ? "btn-outline-primary" : "btn-primary"
+                    } p-2 hover:scale-105 duration-300`}
+                  >
+                    <BsGridFill />
+                  </button>
+                  <button
+                    onClick={() => layoutChange("list")}
+                    className={`btn border dark:border-darkmode-border ${
+                      isListView ? "btn-primary" : "btn-outline-primary"
+                    } p-2 hover:scale-105 duration-300`}
+                  >
+                    <FaList />
+                  </button>
                 </div>
+              </div>
 
-                <div className="flex gap-x-8">
-                  {/* Filter Button Trigger */}
-                  <div className="filter-button-container block lg:hidden mt-1">
-                    <button {...getToggleProps()}>
-                      {isExpanded ? (
-                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
-                          <TbFilterX /> Filter
-                        </span>
-                      ) : (
-                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
-                          <TbFilter /> Filter
-                        </span>
-                      )}
-                    </button>
-                  </div>
-                  {/* Filter Button Trigger End */}
+              <div className="flex gap-x-8">
+                {/* Filter Button Trigger */}
+                <div className="filter-button-container block lg:hidden mt-1">
+                  <button {...getToggleProps()}>
+                    {isExpanded ? (
+                      <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                        <TbFilterX /> Filter
+                      </span>
+                    ) : (
+                      <span className="font-medium text-base flex gap-x-1 items-center justify-center">
+                        <TbFilter /> Filter
+                      </span>
+                    )}
+                  </button>
+                </div>
+                {/* Filter Button Trigger End */}
 
-                  <div className="flex gap-x-4 items-center font-medium text-sm md:text-base relative z-20">
-                    <p className="max-md:hidden text-dark dark:text-darkmode-dark">
-                      Sort By
-                    </p>
+                <div className="flex gap-x-4 items-center font-medium text-sm md:text-base relative z-20">
+                  <p className="max-md:hidden text-dark dark:text-darkmode-dark">
+                    Sort By
+                  </p>
+                  <Suspense>
+                    {" "}
                     <DropdownMenu list={sorting} />
-                  </div>
+                  </Suspense>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="col-12 lg:col-3">
-              <div className="lg:block relative">
-                <div className="block lg:hidden w-full">
-                  {/* <div className="filter-button-container mb-4 text-center">
-                    <button {...getToggleProps()}>
-                      {isExpanded ? (
-                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
-                          <TbFilterX /> Filter
-                        </span>
-                      ) : (
-                        <span className="font-medium text-base flex gap-x-1 items-center justify-center">
-                          <TbFilter /> Filter
-                        </span>
-                      )}
-                    </button>
-                  </div> */}
-                  <section
-                    className="collapse-container-class z-20 bg-body dark:bg-darkmode-body w-full px-4 rounded-md"
-                    {...getCollapseProps()}
-                  >
-                    <div className="pb-8">
+          <div className="col-12 lg:col-3">
+            <div className="lg:block relative">
+              <div className="block lg:hidden w-full">
+                <section
+                  className="collapse-container-class z-20 bg-body dark:bg-darkmode-body w-full px-4 rounded-md"
+                  {...getCollapseProps()}
+                >
+                  <div className="pb-8">
+                    <Suspense>
+                      {" "}
                       <ProductFilters
                         categories={categories}
                         vendors={vendors}
@@ -167,15 +158,15 @@ const ProductLayouts = ({
                         vendorsWithCounts={vendorsWithCounts}
                         categoriesWithCounts={categoriesWithCounts}
                       />
-                    </div>
-                  </section>
-                </div>
+                    </Suspense>
+                  </div>
+                </section>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
