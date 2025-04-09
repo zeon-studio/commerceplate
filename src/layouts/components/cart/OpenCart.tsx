@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { BsCart3 } from "react-icons/bs";
 
 export default function OpenCart({
@@ -11,7 +10,7 @@ export default function OpenCart({
   return (
     <div className="relative text-xl text-dark hover:text-primary dark:border-darkmode-border dark:text-white">
       <BsCart3
-        className={clsx("dark:hover:text-darkmode-primary", className)}
+        className={`dark:hover:text-darkmode-primary ${className}`}
       />
 
       {quantity ? (

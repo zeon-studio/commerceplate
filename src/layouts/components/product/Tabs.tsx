@@ -1,12 +1,11 @@
 "use client";
 
-import { Tab } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import LoadingDescription from "../skeleton/SkeletonDescription";
 
 const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedTab, setSelectedTab] = useState(0);
   const contentArray = description.split(`--- split content ---`);
 
   useEffect(() => {
@@ -15,54 +14,48 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
   }, [descriptionHtml]);
 
   if (loading) {
-    return <LoadingDescription />;
+    return <h1>Loading...</h1>;
   }
 
   return (
-    <Tab.Group>
-      <Tab.List className="border-b-2 relative border-border dark:border-light">
-        <Tab
-          className={({ selected }) =>
-            `${
-              selected
-                ? "border-t-2 border-l-2 border-r-2 border-b-0 bg-body dark:bg-darkmode-body border-border dark:border-light"
-                : "border-transparent"
-            } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md absolute -top-[46px] left-0 h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0`
-          }
+    <div>
+      <div className="border-b-2 relative border-border dark:border-border/40 flex">
+        <button
+          onClick={() => setSelectedTab(0)}
+          className={`${selectedTab === 0
+            ? "border-t-2 border-l-2 border-r-2 border-b-0 bg-body dark:bg-darkmode-body border-border dark:border-border/40 translate-y-[2px]"
+            : "border-transparent"
+            } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0`}
         >
           Description
-        </Tab>
+        </button>
         {contentArray[1] && (
-          <Tab
-            className={({ selected }) =>
-              `${
-                selected
-                  ? "border-t-2 border-l-2 border-r-2 border-b-0 border-border dark:border-light bg-body dark:bg-darkmode-body"
-                  : "border-transparent"
-              } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md absolute -top-[46px] left-32 h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0`
-            }
+          <button
+            onClick={() => setSelectedTab(1)}
+            className={`${selectedTab === 1
+              ? "border-t-2 border-l-2 border-r-2 border-b-0 border-border dark:border-border/40 bg-body dark:bg-darkmode-body translate-y-[2px]"
+              : "border-transparent"
+              } cursor-pointer focus:outline-none px-6 rounded-tl-md rounded-tr-md h-12 py-2 border-t-2 border-l-2 border-r-2 border-b-0 ml-8`}
           >
             More Info
-          </Tab>
+          </button>
         )}
-      </Tab.List>
-      <Tab.Panels className="border-l-2 border-r-2 border-b-2 border-border dark:border-light rounded-bl-md rounded-br-md p-6">
-        <Tab.Panel>
+      </div>
+      <div className="border-l-2 border-r-2 border-b-2 border-border dark:border-border/40 rounded-bl-md rounded-br-md p-6">
+        {selectedTab === 0 && (
           <div
             className="space-y-4"
             dangerouslySetInnerHTML={{ __html: contentArray[0] }}
           />
-        </Tab.Panel>
-        {contentArray[1] && (
-          <Tab.Panel>
-            <div
-              className="space-y-4"
-              dangerouslySetInnerHTML={{ __html: contentArray[1] }}
-            />
-          </Tab.Panel>
         )}
-      </Tab.Panels>
-    </Tab.Group>
+        {selectedTab === 1 && contentArray[1] && (
+          <div
+            className="space-y-4"
+            dangerouslySetInnerHTML={{ __html: contentArray[1] }}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -2,8 +2,8 @@
 
 import { CartItem } from "@/lib/shopify/types";
 import { updateItemQuantity } from "@/lib/utils/cartActions";
-import clsx from "clsx";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import LoadingDots from "../LoadingDots";
 
@@ -20,13 +20,8 @@ function SubmitButton({ type }: { type: "plus" | "minus" }) {
         type === "plus" ? "Increase item quantity" : "Reduce item quantity"
       }
       aria-disabled={pending}
-      className={clsx(
-        "ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80",
-        {
-          "cursor-not-allowed": pending,
-          "ml-auto": type === "minus",
-        },
-      )}
+      className={`ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80 ${pending ? "cursor-not-allowed" : ""
+        } ${type === "minus" ? "ml-auto" : ""}`}
     >
       {pending ? (
         <LoadingDots className="bg-black dark:bg-white" />
@@ -46,7 +41,7 @@ export function EditItemQuantityButton({
   item: CartItem;
   type: "plus" | "minus";
 }) {
-  const [message, formAction] = useFormState(updateItemQuantity, null);
+  const [message, formAction] = useActionState(updateItemQuantity, null);
   const payload = {
     lineId: item.id,
     variantId: item.merchandise.id,

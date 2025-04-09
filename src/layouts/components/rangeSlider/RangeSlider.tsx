@@ -151,7 +151,7 @@ const RangeSlider = ({
 
       {showSubmitButton && (
         <button
-          className="btn btn-sm btn-primary w-full mt-4"
+          className="btn btn-sm btn-primary w-full mb-4"
           onClick={() => {
             priceChange(minValue, maxValue);
           }}

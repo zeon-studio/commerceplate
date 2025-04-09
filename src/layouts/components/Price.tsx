@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 const Price = ({
   amount,
   className,
@@ -18,8 +16,10 @@ const Price = ({
       currencyDisplay: "narrowSymbol",
     }).format(parseFloat(amount))}`}
     <span
-      className={clsx("ml-1 inline", currencyCodeClassName)}
-    >{`${currencyCode}`}</span>
+      className={`ml-1 inline ${currencyCodeClassName}`}
+    >
+      {currencyCode}
+    </span>
   </p>
 );
 

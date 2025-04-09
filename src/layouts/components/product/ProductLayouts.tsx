@@ -5,7 +5,6 @@ import { createUrl } from "@/lib/utils";
 import ProductFilters from "@/partials/ProductFilters";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { useCollapse } from "react-collapsed";
 import { BsGridFill } from "react-icons/bs";
 import { FaList } from "react-icons/fa6";
 import { TbFilter, TbFilterX } from "react-icons/tb";
@@ -22,12 +21,10 @@ const ProductLayouts = ({
   vendorsWithCounts,
   categoriesWithCounts,
 }: any) => {
-  const { getCollapseProps, getToggleProps, isExpanded, setExpanded } =
-    useCollapse();
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isInputEditing, setInputEditing] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
   const isListView = searchParams.get("layout") === "list";
 
   useEffect(() => {
@@ -93,17 +90,15 @@ const ProductLayouts = ({
                 <div className="flex gap-2">
                   <button
                     onClick={() => layoutChange("card")}
-                    className={`btn border dark:border-darkmode-border ${
-                      isListView ? "btn-outline-primary" : "btn-primary"
-                    } p-2 hover:scale-105 duration-300`}
+                    className={`btn border dark:border-darkmode-border ${isListView ? "btn-outline-primary" : "btn-primary"
+                      } p-2 hover:scale-105 duration-300`}
                   >
                     <BsGridFill />
                   </button>
                   <button
                     onClick={() => layoutChange("list")}
-                    className={`btn border dark:border-darkmode-border ${
-                      isListView ? "btn-primary" : "btn-outline-primary"
-                    } p-2 hover:scale-105 duration-300`}
+                    className={`btn border dark:border-darkmode-border ${isListView ? "btn-primary" : "btn-outline-primary"
+                      } p-2 hover:scale-105 duration-300`}
                   >
                     <FaList />
                   </button>
@@ -113,7 +108,7 @@ const ProductLayouts = ({
               <div className="flex gap-x-8">
                 {/* Filter Button Trigger */}
                 <div className="filter-button-container block lg:hidden mt-1">
-                  <button {...getToggleProps()}>
+                  <button onClick={() => setExpanded(!isExpanded)}>
                     {isExpanded ? (
                       <span className="font-medium text-base flex gap-x-1 items-center justify-center">
                         <TbFilterX /> Filter
@@ -145,7 +140,7 @@ const ProductLayouts = ({
               <div className="block lg:hidden w-full">
                 <section
                   className="collapse-container-class z-20 bg-body dark:bg-darkmode-body w-full px-4 rounded-md"
-                  {...getCollapseProps()}
+                  style={{ display: isExpanded ? "block" : "none" }}
                 >
                   <div className="pb-8">
                     <Suspense>
