@@ -1,0 +1,49 @@
+@utility bg-gradient {
+  @apply bg-gradient-to-r from-[#F4F4F4] to-[#F4F4F43D] dark:from-darkmode-light dark:to-darkmode-body;
+}
+
+.rounded-sm {
+  @apply rounded-[4px];
+}
+.rounded {
+  @apply rounded-[6px];
+}
+.rounded-lg {
+  @apply rounded-[12px];
+}
+.rounded-xl {
+  @apply rounded-[16px];
+}
+
+.shadow {
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
+}
+
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+@utility btn-sm {
+  @apply px-4 py-1.5 text-sm font-medium;
+}
+
+@utility btn-md {
+  @apply px-8 py-4 text-xl font-medium;
+}
+
+@utility btn-lg {
+  @apply px-12 py-4 text-xl;
+}
+
+@utility section-sm {
+  @apply py-16 xl:py-20;
+}
+
+/* form style */
+@utility form-input {
+  @apply w-full rounded border-transparent bg-light px-6 py-4 text-text-dark placeholder:text-text-light focus:border-primary dark:focus:border-darkmode-primary focus:ring-transparent dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-light;
+}
+
+@utility form-label {
+  @apply mb-4 block font-secondary text-xl font-normal text-text-dark dark:text-darkmode-light;
+}

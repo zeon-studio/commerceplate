@@ -52,29 +52,29 @@ export function VariantSelector({
   // Set default option based on the existence of search parameters
   const defaultOption: any = hasColorAndSizeParams
     ? {
-        color:
-          options
-            .find((option) => option.name === "Color")
-            ?.values.includes(color) ||
+      color:
+        options
+          .find((option) => option.name === "Color")
+          ?.values.includes(color) ||
           options
             .find((option) => option.name === "Size")
             ?.values.includes(color)
-            ? color
-            : options.find((option) => option.name === "Color")?.values[0],
-        size:
-          options
-            .find((option) => option.name === "Size")
-            ?.values.includes(size) ||
+          ? color
+          : options.find((option) => option.name === "Color")?.values[0],
+      size:
+        options
+          .find((option) => option.name === "Size")
+          ?.values.includes(size) ||
           options
             .find((option) => option.name === "Color")
             ?.values.includes(size)
-            ? size
-            : options.find((option) => option.name === "Size")?.values[0],
-      }
+          ? size
+          : options.find((option) => option.name === "Size")?.values[0],
+    }
     : {
-        color: options.find((option) => option.name === "Color")?.values[0],
-        size: options.find((option) => option.name === "Size")?.values[0],
-      };
+      color: options.find((option) => option.name === "Color")?.values[0],
+      size: options.find((option) => option.name === "Size")?.values[0],
+    };
 
   const hasNoOptionsOrJustOneOption =
     !options.length ||
@@ -149,31 +149,26 @@ export function VariantSelector({
                     onClick={() => {
                       router.replace(optionUrl, { scroll: false });
                     }}
-                    title={`${option.name} ${value}${
-                      !isAvailableForSale ? " (Out of Stock)" : ""
-                    }`}
-                    className={`flex min-w-[48px] items-center justify-center rounded-md border text-sm ${
-                      isActive && option.name !== "Color"
-                        ? "cursor-default ring-2 ring-dark dark:ring-darkmode-dark"
-                        : ""
-                    } ${
-                      !isActive && isAvailableForSale && option.name !== "Color"
+                    title={`${option.name} ${value}${!isAvailableForSale ? " (Out of Stock)" : ""
+                      }`}
+                    className={`flex min-w-[48px] items-center justify-center rounded-md border border-border text-sm cursor-pointer ${isActive && option.name !== "Color"
+                      ? "cursor-default ring-2 ring-dark dark:ring-darkmode-dark"
+                      : ""
+                      } ${!isActive && isAvailableForSale && option.name !== "Color"
                         ? "ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-dark hover:dark:ring-darkmode-dark"
                         : ""
-                    } ${
-                      !isAvailableForSale
-                        ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500  before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700 before:dark:bg-neutral-700"
+                      } ${!isAvailableForSale
+                        ? "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400"
                         : ""
-                    }`}
+                      }`}
                   >
                     {/* Render the color image for the current value */}
                     {option.name === "Color" ? (
                       <div
                         key={value}
-                        className={`relative rounded-md overflow-hidden ${
-                          isActive &&
-                          "outline outline-1 outline-dark dark:outline-darkmode-dark"
-                        }`}
+                        className={`relative rounded-md overflow-hidden ${isActive &&
+                          "outline-1 outline-dark dark:outline-darkmode-dark"
+                          }`}
                       >
                         <Image
                           src={imageMap[value]}

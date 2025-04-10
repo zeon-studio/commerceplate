@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VariantDropDown = ({ sizeOption }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,13 +46,13 @@ const VariantDropDown = ({ sizeOption }: any) => {
   return (
     <div className="w-72 relative" ref={dropdownRef}>
       <button
-        className="w-full py-2 pl-3 pr-10 text-left bg-theme-light rounded-md cursor-pointer sm:text-sm focus:outline-none"
+        className="w-full py-2 pl-3 pr-10 text-left bg-light rounded-md cursor-pointer sm:text-sm focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="block truncate text-light">{selected}</span>
+        <span className="block truncate text-text-light">{selected}</span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2">
           <svg
-            className={`h-5 w-5 text-light transform transition-transform ${isOpen ? "rotate-180" : ""}`}
+            className={`h-5 w-5 text-text-light transform transition-transform ${isOpen ? "rotate-180" : ""}`}
             fill="currentColor"
             viewBox="0 0 20 20"
             aria-hidden="true"
@@ -71,7 +71,7 @@ const VariantDropDown = ({ sizeOption }: any) => {
           {sizeOption?.values?.map((size: string) => (
             <li
               key={size}
-              className="py-2 px-4 cursor-pointer hover:bg-dark/50 hover:text-white text-light"
+              className="py-2 px-4 cursor-pointer hover:bg-dark/50 hover:text-white text-text-light"
               onClick={() => handleSizeChanged(size)}
             >
               {size}

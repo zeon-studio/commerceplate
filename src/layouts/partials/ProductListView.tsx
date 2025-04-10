@@ -1,7 +1,7 @@
 "use client";
 
 import { AddToCart } from "@/components/cart/AddToCart";
-import SkeletonCards from "@/components/skeleton/SkeletonCards";
+import SkeletonCards from "@/components/loadings/skeleton/SkeletonCards";
 import config from "@/config/config.json";
 import ImageFallback from "@/helpers/ImageFallback";
 import useLoadMore from "@/hooks/useLoadMore";
@@ -86,8 +86,8 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
           if (brand) {
             Array.isArray(brand)
               ? (queryString += `${brand
-                  .map((b) => `(vendor:${b})`)
-                  .join(" OR ")}`)
+                .map((b) => `(vendor:${b})`)
+                .join(" OR ")}`)
               : (queryString += `vendor:"${brand}"`);
 
             if (Array.isArray(brand) && brand.length > 0) {
@@ -120,14 +120,14 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
           productsData =
             category && category !== "all"
               ? await getCollectionProducts({
-                  collection: category,
-                  sortKey,
-                  reverse,
-                  filterCategoryProduct:
-                    filterCategoryProduct.length > 0
-                      ? filterCategoryProduct
-                      : undefined,
-                })
+                collection: category,
+                sortKey,
+                reverse,
+                filterCategoryProduct:
+                  filterCategoryProduct.length > 0
+                    ? filterCategoryProduct
+                    : undefined,
+              })
               : await getProducts({ ...query, cursor });
         } else {
           // Fetch all products
@@ -250,7 +250,7 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                       width={312}
                       height={269}
                       alt={featuredImage?.altText || "fallback image"}
-                      className="w-[312px] h-[150px] md:h-[269px] object-cover border dark:border-darkmode-border rounded-md"
+                      className="w-[312px] h-[150px] md:h-[269px] object-cover border border-border dark:border-darkmode-border rounded-md"
                     />
                   </div>
 
@@ -260,14 +260,14 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                     </h2>
 
                     <div className="flex items-center gap-x-2 mt-2">
-                      <span className="text-light dark:text-darkmode-light text-xs md:text-lg font-bold">
+                      <span className="text-text-light dark:text-darkmode-text-light text-xs md:text-lg font-bold">
                         ৳ {priceRange?.minVariantPrice?.amount}{" "}
                         {priceRange?.minVariantPrice?.currencyCode}
                       </span>
                       {parseFloat(
                         compareAtPriceRange?.maxVariantPrice?.amount,
                       ) > 0 ? (
-                        <s className="text-light dark:text-darkmode-light text-xs md:text-base font-medium">
+                        <s className="text-text-light dark:text-darkmode-text-light text-xs md:text-base font-medium">
                           {currencySymbol}{" "}
                           {compareAtPriceRange?.maxVariantPrice?.amount}{" "}
                           {compareAtPriceRange?.maxVariantPrice?.currencyCode}
@@ -277,7 +277,7 @@ const ProductListView = ({ searchParams }: { searchParams: any }) => {
                       )}
                     </div>
 
-                    <p className="max-md:text-xs text-light dark:text-darkmode-light my-4 md:mb-8 line-clamp-1 md:line-clamp-3">
+                    <p className="max-md:text-xs text-text-light dark:text-darkmode-text-light my-4 md:mb-8 line-clamp-1 md:line-clamp-3">
                       {description}
                     </p>
                     <Suspense>

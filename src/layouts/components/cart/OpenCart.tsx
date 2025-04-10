@@ -8,7 +8,7 @@ export default function OpenCart({
   quantity?: number;
 }) {
   return (
-    <div className="relative text-xl text-dark hover:text-primary dark:border-darkmode-border dark:text-white">
+    <div className="relative text-xl text-text-dark hover:text-primary dark:border-darkmode-border dark:text-white">
       <BsCart3
         className={`dark:hover:text-darkmode-primary ${className}`}
       />

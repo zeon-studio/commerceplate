@@ -2,20 +2,20 @@
 
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState, MouseEvent, TouchEvent, JSX } from "react";
+import { JSX, MouseEvent, TouchEvent, useEffect, useRef, useState } from "react";
+import { FiZoomIn } from "react-icons/fi";
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
 } from "react-icons/hi";
-import { FiZoomIn } from "react-icons/fi";
+import type { Swiper as TSwiper } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as TSwiper } from "swiper";
-import LoadingProductThumb from "../skeleton/SkeletonProductThumb";
+import LoadingProductThumb from "../loadings/skeleton/SkeletonProductThumb";
 
 export interface ImageItem {
   url: string;
@@ -140,7 +140,7 @@ const CustomZoomImage = ({ src, alt, width, height }: CustomZoomImageProps): JSX
       {/* Magnifying glass icon - shown on hover for desktop, shown on touch for mobile */}
       {showMagnifier && !isZoomed && (
         <div
-          className="absolute z-10 flex items-center justify-center bg-white bg-opacity-70 rounded-full p-1 shadow-md"
+          className="absolute z-10 flex items-center justify-center bg-white opacity-70 rounded-full p-1 shadow-md"
           style={{
             left: `${position.x * 100}%`,
             top: `${position.y * 100}%`,
@@ -169,7 +169,7 @@ const CustomZoomImage = ({ src, alt, width, height }: CustomZoomImageProps): JSX
 
       {/* Touch zoom instructions - only shown briefly on first touch */}
       {isTouchDevice && isZoomed && (
-        <div className="absolute bottom-2 left-0 right-0 text-center bg-black bg-opacity-50 text-white py-1 text-sm z-20">
+        <div className="absolute bottom-2 left-0 right-0 text-center bg-black opacity-50 text-white py-1 text-sm z-20">
           Pan to move, tap to exit zoom
         </div>
       )}
@@ -251,7 +251,7 @@ const ProductGallery = ({ images }: ProductGalleryProps): JSX.Element => {
         >
           {filteredImages.map((item: ImageItem) => (
             <SwiperSlide key={item.url}>
-              <div className="mb-6 border border-border dark:border-light rounded-md max-h-[623px] overflow-hidden">
+              <div className="mb-6 border border-border dark:border-border/40 rounded-md max-h-[623px] overflow-hidden">
                 <CustomZoomImage
                   src={item.url}
                   alt={item.altText}
@@ -262,7 +262,7 @@ const ProductGallery = ({ images }: ProductGalleryProps): JSX.Element => {
             </SwiperSlide>
           ))}
           <div
-            className={`hidden lg:block w-full absolute top-1/2 -translate-y-1/2 z-10 px-6 text-dark ${isHovered
+            className={`hidden lg:block w-full absolute top-1/2 -translate-y-1/2 z-10 px-6 text-text-dark ${isHovered
               ? "opacity-100 transition-opacity duration-300 ease-in-out"
               : "opacity-0 transition-opacity duration-300 ease-in-out"
               }`}
@@ -296,7 +296,7 @@ const ProductGallery = ({ images }: ProductGalleryProps): JSX.Element => {
               onClick={() => handleThumbSlideClick(item.url)}
               className={`rounded-md cursor-pointer overflow-hidden ${picUrl === item.url
                 ? "border border-darkmode-border dark:border-yellow-500"
-                : "border border-border dark:border-light"
+                : "border border-border dark:border-border/40"
                 }`}
             >
               <Image

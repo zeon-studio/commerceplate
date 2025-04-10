@@ -12,7 +12,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
   let parts = [
     {
       label: (
-        <BiHome className="text-light dark:text-darkmode-light" size={24} />
+        <BiHome className="text-text-light dark:text-darkmode-text-light" size={24} />
       ),
       href: "/",
       "aria-label": pathname === "/" ? "page" : undefined,
@@ -35,7 +35,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
         {parts.map(({ label, ...attrs }, index) => (
           <li className="mx-1 capitalize" role="listitem" key={index}>
             {index > 0 && (
-              <span className="inline-block mr-1 text-light dark:text-darkmode-light">
+              <span className="inline-block mr-1 text-text-light dark:text-darkmode-text-light">
                 &gt;
               </span>
             )}
@@ -47,7 +47,7 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
                 {label}
               </Link>
             ) : (
-              <span className="text-light dark:text-darkmode-light">
+              <span className="text-text-light dark:text-darkmode-text-light">
                 {label}
               </span>
             )}

@@ -2,8 +2,8 @@ export const dynamic = "force-dynamic";
 
 import CollectionsSlider from "@/components/CollectionsSlider";
 import HeroSlider from "@/components/HeroSlider";
-import SkeletonCategory from "@/components/skeleton/SkeletonCategory";
-import SkeletonFeaturedProducts from "@/components/skeleton/SkeletonFeaturedProducts";
+import SkeletonCategory from "@/components/loadings/skeleton/SkeletonCategory";
+import SkeletonFeaturedProducts from "@/components/loadings/skeleton/SkeletonFeaturedProducts";
 import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser";
 import { getCollectionProducts, getCollections } from "@/lib/shopify";

@@ -27,11 +27,11 @@ const Contact = async () => {
               contact_meta?.map((contact: ContactUsItem) => (
                 <div
                   key={contact.name}
-                  className="p-10 bg-theme-light dark:bg-darkmode-theme-light rounded-md text-center"
+                  className="p-10 bg-light dark:bg-darkmode-light rounded-md text-center"
                 >
                   <p
                     dangerouslySetInnerHTML={markdownify(contact.name)}
-                    className="mb-6 h3 font-medium text-dark dark:text-darkmode-dark"
+                    className="mb-6 h3 font-medium text-text-dark dark:text-darkmode-text-dark"
                   />
                   <p dangerouslySetInnerHTML={markdownify(contact.contact)} />
                 </div>

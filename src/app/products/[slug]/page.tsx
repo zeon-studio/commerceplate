@@ -1,10 +1,10 @@
 import Social from "@/components/Social";
 import { AddToCart } from "@/components/cart/AddToCart";
+import LoadingProductGallery from "@/components/loadings/skeleton/SkeletonProductGallery";
 import ProductGallery from "@/components/product/ProductGallery";
 import ShowTags from "@/components/product/ShowTags";
 import Tabs from "@/components/product/Tabs";
 import { VariantSelector } from "@/components/product/VariantSelector";
-import LoadingProductGallery from "@/components/skeleton/SkeletonProductGallery";
 import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
@@ -70,7 +70,6 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
             {/* right side contents  */}
             <div className="col-10 md:col-8 lg:col-6">
               <Suspense>
-                {" "}
                 <ProductGallery images={images} />
               </Suspense>
             </div>
@@ -80,12 +79,12 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
               <h1 className="text-3xl md:h2 mb-2 md:mb-6">{title}</h1>
 
               <div className="flex gap-2 items-center">
-                <h4 className="text-light dark:text-darkmode-light max-md:h2">
+                <h4 className="text-text-light dark:text-darkmode-text-light max-md:h2">
                   {currencySymbol} {priceRange?.minVariantPrice.amount}{" "}
                   {priceRange?.minVariantPrice?.currencyCode}
                 </h4>
                 {parseFloat(compareAtPriceRange?.maxVariantPrice.amount) > 0 ? (
-                  <s className="text-light max-md:h3 dark:text-darkmode-light">
+                  <s className="text-text-light max-md:h3 dark:text-darkmode-text-light">
                     {currencySymbol}{" "}
                     {compareAtPriceRange?.maxVariantPrice?.amount}{" "}
                     {compareAtPriceRange?.maxVariantPrice?.currencyCode}
@@ -120,7 +119,7 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
               </div>
 
               <div className="mb-8 md:mb-10">
-                <p className="p-2 max-md:text-sm rounded-md bg-theme-light dark:bg-darkmode-theme-light inline">
+                <p className="p-2 max-md:text-sm rounded-md bg-light dark:bg-darkmode-light inline">
                   {estimated_delivery}
                 </p>
               </div>
@@ -135,12 +134,13 @@ const ShowProductSingle = async ({ params }: { params: { slug: string } }) => {
                       alt={payment.name}
                       width={44}
                       height={32}
+                      className="w-[44px] h-[32px]"
                     />
                   ),
                 )}
               </div>
 
-              <hr className="my-6 border border-border dark:border-light" />
+              <hr className="my-6 border border-border dark:border-border/40" />
 
               <div className="flex gap-3 items-center mb-6">
                 <h5 className="max-md:text-base">Share:</h5>

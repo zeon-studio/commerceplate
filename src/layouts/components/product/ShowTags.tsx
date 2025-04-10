@@ -30,10 +30,9 @@ const ShowTags: React.FC<ShowTagsProps> = ({ tags }) => {
       {tags.map((tag: string) => (
         <p
           key={tag}
-          className={`px-2 py-1 rounded-md border border-border dark:border-light text-light dark:text-darkmode-light ${
-            selectedTag === slugify(tag.toLowerCase()) &&
-            "bg-theme-light dark:bg-theme-dark"
-          } `}
+          className={`cursor-pointer px-2 py-1 rounded-md border border-border dark:border-border/40 text-text-light dark:text-darkmode-text-light ${selectedTag === slugify(tag.toLowerCase()) &&
+            "bg-light dark:bg-dark"
+            } `}
           onClick={() => handleTagClick(tag)}
         >
           {tag}

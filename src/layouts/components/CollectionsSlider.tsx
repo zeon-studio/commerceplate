@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import LoadingCategory from "./skeleton/SkeletonCategory";
+import LoadingCategory from "./loadings/skeleton/SkeletonCategory";
 
 const CollectionsSlider = ({ collections }: { collections: any }) => {
   const [_, setInit] = useState(false);
@@ -69,7 +69,7 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
           return (
             <SwiperSlide key={handle}>
               <div className="text-center relative">
-                <ImageFallback
+                <img
                   src={image?.url}
                   width={424}
                   height={306}
@@ -85,7 +85,7 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
                       {title}
                     </Link>
                   </h3>
-                  <p className="text-light dark:text-darkmode-light text-xs md:text-xl">
+                  <p className="text-text-light dark:text-darkmode-text-light text-xs md:text-xl">
                     {item.products?.edges.length} items
                   </p>
                 </div>
@@ -95,11 +95,10 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
         })}
 
         <div
-          className={`hidden md:block w-full absolute top-[33%] z-10 px-4 text-dark ${
-            isHovered
-              ? "opacity-100 transition-opacity duration-300 ease-in-out"
-              : "opacity-0 transition-opacity duration-300 ease-in-out"
-          }`}
+          className={`hidden md:block w-full absolute top-[33%] z-10 px-4 text-text-dark ${isHovered
+            ? "opacity-100 transition-opacity duration-300 ease-in-out"
+            : "opacity-0 transition-opacity duration-300 ease-in-out"
+            }`}
         >
           <div
             ref={prevRef}

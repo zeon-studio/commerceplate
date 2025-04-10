@@ -1,10 +1,10 @@
+import Expandable from "@/components/Expandable";
 import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import PageHeader from "@/partials/PageHeader";
 import SeoMeta from "@/partials/SeoMeta";
 import Testimonials from "@/partials/Testimonials";
-import Accordion from "@/shortcodes/Accordion";
 import { AboutUsItem, RegularPage } from "@/types";
 import Link from "next/link";
 import { FaBoxOpen, FaCheckCircle, FaHeadset } from "react-icons/fa";
@@ -52,7 +52,7 @@ const About = () => {
                   <div className="mt-10 lg:mt-0">
                     <h2>{section?.title}</h2>
                     <p
-                      className="mt-4 text-light leading-7"
+                      className="mt-4 text-text-light dark:text-darkmode-text-light leading-7"
                       dangerouslySetInnerHTML={markdownify(section?.content)}
                     />
                   </div>
@@ -62,7 +62,7 @@ const About = () => {
                   <div>
                     <h2>{section.title}</h2>
                     <p
-                      className="mt-4 text-light leading-7"
+                      className="mt-4 text-text-light dark:text-darkmode-text-light leading-7"
                       dangerouslySetInnerHTML={markdownify(section.content)}
                     />
                   </div>
@@ -98,9 +98,9 @@ const About = () => {
                   <div key={idx} className="border border-border rounded-lg">
                     <div className="py-6 space-y-2">
                       <h3 className="h4">{s.name}</h3>
-                      <p>{s.designation}</p>
+                      <p className="text-text-dark dark:text-darkmode-text-light">{s.designation}</p>
                     </div>
-                    <div className="bg-theme-light rounded-b-xl mx-auto">
+                    <div className="bg-light rounded-b-xl mx-auto">
                       <ImageFallback
                         src={s.avatar}
                         alt={`Staff-${s.name}`}
@@ -118,7 +118,7 @@ const About = () => {
 
       <section className="section">
         <div className="container">
-          <div className="bg-theme-light px-7 py-20 dark:bg-darkmode-theme-light text-center rounded-md">
+          <div className="bg-light px-7 py-20 dark:bg-darkmode-light text-center rounded-md">
             <h2>Reasons to shop with us</h2>
 
             <div className="row justify-center gap-6 mt-14">
@@ -156,26 +156,28 @@ const About = () => {
 
       <section>
         <div className="container">
-          <div className="bg-theme-light px-7 lg:px-32 py-20 dark:bg-darkmode-theme-light row mb-14 xl:mb-28 rounded-b-md">
-            <div className="col-12 md:col-5 mx-auto space-y-5 mb-10 md:mb-0">
-              <h1 dangerouslySetInnerHTML={markdownify(faq_section_title!)} />
-              <p
-                dangerouslySetInnerHTML={markdownify(faq_section_subtitle!)}
-                className="md:text-lg"
-              />
+          <div className="bg-light px-7 lg:px-32 py-20 dark:bg-darkmode-light mb-14 xl:mb-28 rounded-b-md">
+            <div className="row">
+              <div className="md:col-5 mx-auto space-y-5 mb-10 md:mb-0">
+                <h1 dangerouslySetInnerHTML={markdownify(faq_section_title!)} />
+                <p
+                  dangerouslySetInnerHTML={markdownify(faq_section_subtitle!)}
+                  className="md:text-lg"
+                />
 
-              {button?.enable && (
-                <Link
-                  className="btn btn-sm md:btn-lg btn-primary font-medium"
-                  href={button.link}
-                >
-                  {button.label}
-                </Link>
-              )}
-            </div>
+                {button?.enable && (
+                  <Link
+                    className="btn btn-sm md:btn-lg btn-primary font-medium"
+                    href={button.link}
+                  >
+                    {button.label}
+                  </Link>
+                )}
+              </div>
 
-            <div className="col-12 md:col-7">
-              <Accordion faqs={faqs!} />
+              <div className="md:col-7">
+                <Expandable faqs={faqs!} />
+              </div>
             </div>
           </div>
         </div>

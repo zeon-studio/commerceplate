@@ -18,7 +18,7 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="border-b-2 relative border-border dark:border-border/40 flex">
         <button
           onClick={() => setSelectedTab(0)}
@@ -55,7 +55,7 @@ const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -35,11 +35,10 @@ const renderMenuItem = (
   return menu.hasChildren ? (
     <li className="nav-item nav-dropdown group relative" key={menu.name}>
       <span
-        className={`nav-link inline-flex items-center ${
-          (menu.children?.map(({ url }) => url).includes(pathname) ||
-            menu.children?.map(({ url }) => `${url}/`).includes(pathname)) &&
+        className={`nav-link inline-flex items-center ${(menu.children?.map(({ url }) => url).includes(pathname) ||
+          menu.children?.map(({ url }) => `${url}/`).includes(pathname)) &&
           "active"
-        }`}
+          }`}
         onClick={handleToggleChildMenu}
       >
         {menu.name}
@@ -118,7 +117,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
           <div className="relative z-40 hidden md:block">
             <label
               htmlFor="nav-toggle"
-              className="order-3 cursor-pointer flex items-center text-dark dark:text-white lg:order-1"
+              className="order-3 cursor-pointer flex items-center text-text-dark dark:text-white lg:order-1"
             >
               <span className="mr-2 font-medium">Pages</span>
               <button
@@ -211,7 +210,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
           <div className="relative z-40 block md:hidden ml-6">
             <label
               htmlFor="nav-toggle"
-              className="cursor-pointer flex items-center text-dark dark:text-white border dark:border-light p-1 rounded-md"
+              className="cursor-pointer flex items-center text-text-dark dark:text-white border dark:border-border/40 p-1 rounded-md"
             >
               <button
                 id="nav-toggle"

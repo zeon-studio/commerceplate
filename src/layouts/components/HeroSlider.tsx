@@ -1,11 +1,10 @@
 "use client";
+
 import ImageFallback from "@/helpers/ImageFallback";
 import { Product } from "@/lib/shopify/types";
 import Link from "next/link";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// import required modules
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -26,7 +25,7 @@ const HeroSlider = ({ products }: { products: Product[] }) => {
               <div className="sm:col-12 lg:col-6 order-2 lg:order-0">
                 <div className="text-center py-10 lg:py-0">
                   {item?.description && (
-                    <p className="mb-2 lg:mb-3 text-light dark:text-darkmode-light font-medium md:text-xl">
+                    <p className="mb-2 lg:mb-3 text-text-light dark:text-darkmode-text-light font-medium md:text-xl">
                       {item.description}
                     </p>
                   )}
@@ -54,7 +53,7 @@ const HeroSlider = ({ products }: { products: Product[] }) => {
                     width={507}
                     height={385}
                     alt="banner image"
-                    priority
+                    priority={true}
                   />
                 )}
               </div>

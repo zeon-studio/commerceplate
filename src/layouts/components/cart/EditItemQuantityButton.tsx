@@ -5,7 +5,7 @@ import { updateItemQuantity } from "@/lib/utils/cartActions";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import LoadingDots from "../LoadingDots";
+import LoadingDots from "../loadings/LoadingDots";
 
 function SubmitButton({ type }: { type: "plus" | "minus" }) {
   const { pending } = useFormStatus();

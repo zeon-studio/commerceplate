@@ -1,7 +1,7 @@
 "use client";
 
 import { AddToCart } from "@/components/cart/AddToCart";
-import SkeletonCards from "@/components/skeleton/SkeletonCards";
+import SkeletonCards from "@/components/loadings/skeleton/SkeletonCards";
 import config from "@/config/config.json";
 import ImageFallback from "@/helpers/ImageFallback";
 import useLoadMore from "@/hooks/useLoadMore";
@@ -86,8 +86,8 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
           if (brand) {
             Array.isArray(brand)
               ? (queryString += `${brand
-                  .map((b) => `(vendor:${b})`)
-                  .join(" OR ")}`)
+                .map((b) => `(vendor:${b})`)
+                .join(" OR ")}`)
               : (queryString += `vendor:"${brand}"`);
 
             if (Array.isArray(brand) && brand.length > 0) {
@@ -120,14 +120,14 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
           productsData =
             category && category !== "all"
               ? await getCollectionProducts({
-                  collection: category,
-                  sortKey,
-                  reverse,
-                  filterCategoryProduct:
-                    filterCategoryProduct.length > 0
-                      ? filterCategoryProduct
-                      : undefined,
-                })
+                collection: category,
+                sortKey,
+                reverse,
+                filterCategoryProduct:
+                  filterCategoryProduct.length > 0
+                    ? filterCategoryProduct
+                    : undefined,
+              })
               : await getProducts({ ...query, cursor });
         } else {
           // Fetch all products
@@ -210,11 +210,12 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
       {products?.length === 0 && (
         <div className="mx-auto pt-5 text-center">
           <ImageFallback
-            className="mx-auto mb-6"
+            className="mx-auto mb-6 w-[211px] h-[184px]"
             src="/images/no-search-found.png"
             alt="no-search-found"
             width={211}
             height={184}
+            priority={true}
           />
           <h1 className="h2 mb-4">No Product Found!</h1>
           <p>
@@ -265,7 +266,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
                   </Link>
                 </h2>
                 <div className="flex flex-wrap justify-center items-center gap-x-2 mt-2 md:mt-4">
-                  <span className="text-base md:text-xl font-bold text-dark dark:text-darkmode-dark">
+                  <span className="text-base md:text-xl font-bold text-text-dark dark:text-darkmode-text-dark">
                     {currencySymbol}{" "}
                     {product?.priceRange?.minVariantPrice?.amount}{" "}
                     {product?.priceRange?.minVariantPrice?.currencyCode}
@@ -273,7 +274,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
                   {parseFloat(
                     product?.compareAtPriceRange?.maxVariantPrice?.amount,
                   ) > 0 ? (
-                    <s className="text-light dark:text-darkmode-light text-xs md:text-base font-medium">
+                    <s className="text-text-light dark:text-darkmode-text-light text-xs md:text-base font-medium">
                       {currencySymbol}{" "}
                       {product?.compareAtPriceRange?.maxVariantPrice?.amount}{" "}
                       {

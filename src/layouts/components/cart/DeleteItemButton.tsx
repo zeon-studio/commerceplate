@@ -5,7 +5,7 @@ import { removeItem } from "@/lib/utils/cartActions";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
-import LoadingDots from "../LoadingDots";
+import LoadingDots from "../loadings/LoadingDots";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

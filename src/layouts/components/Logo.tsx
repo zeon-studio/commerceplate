@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Logo = ({ src }: { src?: string }) => {
-  // destructuring items from config object
+
   const {
     logo,
     logo_darkmode,

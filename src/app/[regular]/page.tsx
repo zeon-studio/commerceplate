@@ -1,5 +1,5 @@
 import MDXContent from "@/helpers/MDXContent";
-import { getListPage, getSinglePage } from "@/lib/contentParser";
+import { getSinglePage } from "@/lib/contentParser";
 import PageHeader from "@/partials/PageHeader";
 import SeoMeta from "@/partials/SeoMeta";
 import { RegularPage } from "@/types";
@@ -27,7 +27,6 @@ const RegularPages = async (props: {
 
   const { frontmatter, content } = data;
   const { title, meta_title, description, image } = frontmatter;
-  const callToAction = getListPage("sections/call-to-action.md");
 
   return (
     <>
@@ -45,8 +44,6 @@ const RegularPages = async (props: {
           </div>
         </div>
       </section>
-
-      {/* <CallToAction data={callToAction} /> */}
     </>
   );
 };

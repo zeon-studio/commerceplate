@@ -57,7 +57,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
             </button>
           </div>
 
-          <div className="w-full h-px absolute bg-dark dark:bg-darkmode-dark left-0 top-16" />
+          <div className="w-full h-px absolute bg-dark dark:bg-light left-0 top-16" />
 
           {!cart || cart.lines.length === 0 ? (
             <div className="flex flex-col justify-center items-center space-y-6 my-auto">
@@ -177,7 +177,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
               </div>
               <a
                 href={cart.checkoutUrl}
-                className="block w-full rounded-md bg-dark dark:bg-darkmode-dark p-3 text-center text-sm font-medium text-darkmode-light dark:text-dark opacity-90 hover:opacity-100"
+                className="block w-full rounded-md bg-dark dark:bg-light p-3 text-center text-sm font-medium text-white dark:text-text-dark opacity-100 hover:opacity-90"
               >
                 Proceed to Checkout
               </a>
