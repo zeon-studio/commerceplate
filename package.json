@@ -1,6 +1,6 @@
 {
   "name": "commerceplate",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Shopify Storefront Boilerplate with Next.js, Tailwind CSS, and Shopify SDK",
   "author": "zeon.studio",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/js-cookie": "^3.0.6",
     "@types/marked": "^5.0.2",
-    "@types/node": "22.14.4",
+    "@types/node": "^22.14.1",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
     "@types/react-gravatar": "^2.6.14",
