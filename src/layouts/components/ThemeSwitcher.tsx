@@ -17,14 +17,13 @@ const ThemeSwitcher = ({ className }: { className: string }) => {
           <input
             id="theme-switcher"
             type="checkbox"
-            defaultChecked={
-              mounted && (theme === "dark" || resolvedTheme === "dark")
-            }
+            checked={mounted && (theme === "dark" || resolvedTheme === "dark")}
             onClick={() =>
               setTheme(
                 theme === "dark" || resolvedTheme === "dark" ? "light" : "dark",
               )
             }
+            readOnly
           />
           <label htmlFor="theme-switcher">
             <span className="sr-only">theme switcher</span>

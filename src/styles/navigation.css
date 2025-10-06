@@ -59,7 +59,7 @@
   @apply inline-flex;
 
   label {
-    @apply relative inline-block h-4 w-6 cursor-pointer rounded-2xl bg-border lg:w-10;
+    @apply bg-border relative inline-block h-4 w-6 cursor-pointer rounded-2xl lg:w-10;
   }
 
   input {
@@ -67,7 +67,7 @@
   }
 
   span {
-    @apply absolute -top-1 left-0 dark:lg:left-4 flex h-6 w-6 items-center justify-center rounded-full bg-dark transition-all duration-300 dark:bg-white;
+    @apply bg-dark absolute -top-1 left-0 flex h-6 w-6 items-center justify-center rounded-full transition-all duration-300 dark:bg-white;
   }
 
   input:checked + label {

@@ -34,7 +34,7 @@ const renderMenuItem = (
 ) => {
   return menu.hasChildren ? (
     <li className="nav-item nav-dropdown group relative" key={menu.name}>
-      <span
+      <button
         className={`nav-link inline-flex items-center ${(menu.children?.map(({ url }) => url).includes(pathname) ||
           menu.children?.map(({ url }) => `${url}/`).includes(pathname)) &&
           "active"
@@ -42,10 +42,13 @@ const renderMenuItem = (
         onClick={handleToggleChildMenu}
       >
         {menu.name}
-        <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+        <svg
+          className={`h-6 w-6 fill-current ml-2 transition-transform ${showChildMenu ? "transform rotate-180" : ""}`}
+          viewBox="0 0 20 20"
+        >
           <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
         </svg>
-      </span>
+      </button>
       <ul
         className={`nav-dropdown-list ${showChildMenu ? "visible" : "hidden"}`}
       >
@@ -119,7 +122,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
               htmlFor="nav-toggle"
               className="order-3 cursor-pointer flex items-center text-text-dark dark:text-white lg:order-1"
             >
-              <span className="mr-2 font-medium">Pages</span>
+              <p className="mr-2 font-medium">Pages</p>
               <button
                 id="nav-toggle"
                 className="focus:outline-none"
