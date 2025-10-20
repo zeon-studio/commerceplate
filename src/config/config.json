@@ -35,6 +35,11 @@
     "link": "https://github.com/zeon-studio/commerceplate"
   },
 
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
+  },
+
   "metadata": {
     "meta_author": "Zeon Studio",
     "meta_image": "/images/og-image.png",

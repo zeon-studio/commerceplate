@@ -2,6 +2,7 @@
 title: "Privacy Policy"
 meta_title: ""
 description: "this is meta description"
+image: ""
 draft: false
 ---
 
