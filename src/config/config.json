@@ -12,6 +12,12 @@
     "logo_text": "Commerceplate"
   },
 
+  "announcement": {
+    "enable": true,
+    "content": "<span class='text-center block'>♥️ Loving Commerceplate? <a class='underline' href='https://github.com/zeon-studio/commerceplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>",
+    "expire_days": 7
+  },
+
   "settings": {
     "search": true,
     "account": true,

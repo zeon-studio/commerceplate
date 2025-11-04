@@ -2,6 +2,7 @@ import Cart from "@/components/cart/Cart";
 import OpenCart from "@/components/cart/OpenCart";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
+import Announcement from "@/helpers/Announcement";
 import TwSizeIndicator from "@/helpers/TwSizeIndicator";
 import Footer from "@/partials/Footer";
 import Header from "@/partials/Header";
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <TwSizeIndicator />
         <Providers>
+          <Announcement />
           <Header>
             <OpenCart />
             <Cart />

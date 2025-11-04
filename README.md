@@ -10,8 +10,8 @@
 
 <p align=center>
 
-  <a href="https://github.com/vercel/next.js/releases/tag/v15.5.6" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=NEXTJS&message=15.5.6&color=000&logo=nextjs" />
+  <a href="https://github.com/vercel/next.js/releases/tag/v16.0.1" alt="Contributors">
+    <img src="https://img.shields.io/static/v1?label=NEXTJS&message=16.0.1&color=000&logo=nextjs" alt="nextjs 16.0.1"/>
   </a>
 
   <a href="https://github.com/zeon-studio/commerceplate/blob/main/LICENSE">
@@ -62,7 +62,7 @@
 ### 📦 Dependencies
 
 - shopify
-- next 15.5.0+
+- next 16.0+
 - node v20.10+
 - npm v10.2+
 - tailwind v4.1+
