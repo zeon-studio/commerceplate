@@ -35,10 +35,11 @@ const renderMenuItem = (
   return menu.hasChildren ? (
     <li className="nav-item nav-dropdown group relative" key={menu.name}>
       <button
-        className={`nav-link inline-flex items-center ${(menu.children?.map(({ url }) => url).includes(pathname) ||
-          menu.children?.map(({ url }) => `${url}/`).includes(pathname)) &&
+        className={`nav-link inline-flex items-center ${
+          (menu.children?.map(({ url }) => url).includes(pathname) ||
+            menu.children?.map(({ url }) => `${url}/`).includes(pathname)) &&
           "active"
-          }`}
+        }`}
         onClick={handleToggleChildMenu}
       >
         {menu.name}
@@ -86,6 +87,7 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
 
   useEffect(() => {
     window.scroll(0, 0);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowSidebar(false);
   }, [pathname]);
 
@@ -182,6 +184,16 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
                     <Link
                       className="btn btn-outline-primary btn-sm"
                       href={navigation_button.link}
+                      target={
+                        navigation_button.link.startsWith("http")
+                          ? "_blank"
+                          : "_self"
+                      }
+                      rel={
+                        navigation_button.link.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
                     >
                       {navigation_button.label}
                     </Link>
@@ -274,6 +286,16 @@ const Header: React.FC<{ children: any }> = ({ children }) => {
                     <Link
                       className="btn btn-outline-primary btn-sm"
                       href={navigation_button.link}
+                      target={
+                        navigation_button.link.startsWith("http")
+                          ? "_blank"
+                          : "_self"
+                      }
+                      rel={
+                        navigation_button.link.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
                     >
                       {navigation_button.label}
                     </Link>
