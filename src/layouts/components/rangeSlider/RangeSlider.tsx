@@ -14,13 +14,17 @@ const RangeSlider = ({
   const { currencyCode, currencySymbol } = config.shopify;
   const maxAmount = parseInt(maxPriceData?.amount);
 
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(maxAmount);
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const getMinPrice = searchParams.get("minPrice");
   const getMaxPrice = searchParams.get("maxPrice");
+
+  const [minValue, setMinValue] = useState(() =>
+    getMinPrice ? parseInt(getMinPrice) : 0,
+  );
+  const [maxValue, setMaxValue] = useState(() =>
+    getMaxPrice ? parseInt(getMaxPrice) : maxAmount,
+  );
 
   const rangeRef = useRef<HTMLDivElement>(null);
   const minThumbRef = useRef<HTMLDivElement>(null);
@@ -28,42 +32,23 @@ const RangeSlider = ({
   const rangeLineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initialize with URL params if available
-    if (getMinPrice) {
-      setMinValue(parseInt(getMinPrice));
-    }
-    if (getMaxPrice) {
-      setMaxValue(parseInt(getMaxPrice));
-    } else {
-      setMaxValue(maxAmount);
-    }
-  }, [getMinPrice, getMaxPrice, maxAmount]);
-
-  useEffect(() => {
-    updateRangeBar();
-  }, [minValue, maxValue]);
-
-  const updateRangeBar = () => {
     if (
       !rangeLineRef.current ||
       !minThumbRef.current ||
       !maxThumbRef.current ||
       !rangeRef.current
-    )
+    ) {
       return;
+    }
 
-    const rangeWidth = rangeRef.current.getBoundingClientRect().width;
     const minPercent = (minValue / maxAmount) * 100;
     const maxPercent = (maxValue / maxAmount) * 100;
 
-    // Update the range line position
     rangeLineRef.current.style.left = `${minPercent}%`;
     rangeLineRef.current.style.width = `${maxPercent - minPercent}%`;
-
-    // Update thumbs position
     minThumbRef.current.style.left = `${minPercent}%`;
     maxThumbRef.current.style.left = `${maxPercent}%`;
-  };
+  }, [minValue, maxValue, maxAmount]);
 
   const handleMouseDown = (thumb: "min" | "max") => (e: React.MouseEvent) => {
     e.preventDefault();

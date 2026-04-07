@@ -18,15 +18,10 @@ interface TabProps {
 function Tabs({ children }: { children: ReactElement<TabProps>[] }) {
   const [active, setActive] = useState(0);
   const tabItemsRef: RefObject<HTMLElement[]> = useRef([]);
-  const [defaultFocus, setDefaultFocus] = useState(false);
 
   useEffect(() => {
-    if (defaultFocus) {
-      tabItemsRef.current?.[active]?.focus();
-    } else {
-      setDefaultFocus(true);
-    }
-  }, [active, defaultFocus]);
+    tabItemsRef.current?.[active]?.focus();
+  }, [active]);
 
   // Change tab item on key down
   const handleKeyDown = (

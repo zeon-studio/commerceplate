@@ -38,7 +38,7 @@ export async function addItem(
     ]);
     revalidateTag(TAGS.cart, "max");
   } catch (e) {
-    return "Error adding item to cart";
+    return `Error adding item to cart: ${e}`;
   }
 }
 
@@ -53,7 +53,7 @@ export async function removeItem(prevState: any, lineId: string) {
     await removeFromCart(cartId, [lineId]);
     revalidateTag(TAGS.cart, "max");
   } catch (e) {
-    return "Error removing item from cart";
+    return `Error removing item from cart: ${e}`;
   }
 }
 
@@ -81,6 +81,6 @@ export async function updateItemQuantity(
     ]);
     revalidateTag(TAGS.cart, "max");
   } catch (e) {
-    return "Error updating item quantity";
+    return `Error updating item quantity: ${e}`;
   }
 }

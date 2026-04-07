@@ -1,9 +1,9 @@
-
 "use client";
 
 import { getUserDetails } from "@/lib/shopify";
 import type { user } from "@/lib/shopify/types";
 import Cookies from "js-cookie";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Gravatar from "react-gravatar";
@@ -21,7 +21,7 @@ export const fetchUser = async () => {
       return userInfo;
     }
   } catch (error) {
-    // console.log("Error fetching user details:", error);
+    console.log("Error fetching user details:", error);
     return null;
   }
 };
@@ -88,18 +88,21 @@ const NavUser = () => {
           </div>
         </button>
       ) : (
-        <a
+        <Link
           className="text-xl text-text-dark hover:text-text-primary dark:border-darkmode-border dark:text-white flex items-center"
           href="/login"
           aria-label="login"
         >
           <BsPerson className="dark:hover:text-darkmode-primary" />
-        </a>
+        </Link>
       )}
 
       {dropdownOpen && (
         <div className="z-20 text-center absolute w-full right-8 bg-transparent shadow-md rounded mt-2">
-          <button onClick={handleLogout} className="btn btn-primary max-md:btn-sm mt-2">
+          <button
+            onClick={handleLogout}
+            className="btn btn-primary max-md:btn-sm mt-2"
+          >
             Logout
           </button>
         </div>

@@ -1,47 +1,40 @@
 "use client";
 
+import { createUrl } from "@/lib/utils";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const VariantDropDown = ({ sizeOption }: any) => {
+const VariantDropDownInner = ({ sizeOption, selected, setSelected }: any) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Select One");
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const updateUrl = (param: string, value: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set(param.toLowerCase(), value);
-    const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-
-    // Replace the URL without reloading the page
-    window.history.replaceState({}, "", newUrl);
-  };
 
   const handleSizeChanged = (value: string) => {
     setSelected(value);
-    updateUrl(sizeOption.name, value);
+
+    const optionSearchParams = new URLSearchParams(searchParams.toString());
+    optionSearchParams.set(sizeOption.name.toLowerCase(), value);
+    const optionUrl = createUrl(pathname, optionSearchParams);
+
+    router.replace(optionUrl, { scroll: false });
     setIsOpen(false);
   };
 
   useEffect(() => {
-    const setInitialSizeFromUrl = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const sizeParam = searchParams.get(sizeOption.name.toLowerCase());
-      if (sizeParam && sizeOption.values.includes(sizeParam)) {
-        setSelected(sizeParam);
-      }
-    };
-
-    setInitialSizeFromUrl();
-
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [sizeOption]);
+  }, []);
 
   return (
     <div className="w-72 relative" ref={dropdownRef}>
@@ -80,6 +73,29 @@ const VariantDropDown = ({ sizeOption }: any) => {
         </ul>
       )}
     </div>
+  );
+};
+
+const VariantDropDown = ({ sizeOption }: any) => {
+  const searchParams = useSearchParams();
+
+  // Calculate selected value from URL
+  const sizeParam = searchParams.get(sizeOption.name.toLowerCase());
+  const initialSelected =
+    sizeParam && sizeOption.values.includes(sizeParam)
+      ? sizeParam
+      : "Select One";
+
+  const [selected, setSelected] = useState(initialSelected);
+
+  // Use key to force remount when URL changes
+  return (
+    <VariantDropDownInner
+      key={sizeParam || "default"}
+      sizeOption={sizeOption}
+      selected={selected}
+      setSelected={setSelected}
+    />
   );
 };
 

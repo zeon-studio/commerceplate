@@ -1,7 +1,7 @@
 "use client";
 
 import ImageFallback from "@/helpers/ImageFallback";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { BsChevronRight } from "react-icons/bs";
 // Import Swiper styles
 import "swiper/css";
@@ -11,10 +11,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const PaymentSlider = ({ paymentMethods }: { paymentMethods: any }) => {
-  const [_, setInit] = useState(false);
-
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const [prevEl, setPrevEl] = useState<HTMLButtonElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLButtonElement | null>(null);
   return (
     <Swiper
       modules={[Pagination, Navigation]}
@@ -33,10 +31,9 @@ const PaymentSlider = ({ paymentMethods }: { paymentMethods: any }) => {
         },
       }}
       navigation={{
-        prevEl: prevRef.current,
-        nextEl: nextRef.current,
+        prevEl,
+        nextEl,
       }}
-      onInit={() => setInit(true)}
     >
       {paymentMethods.map((item: any) => (
         <SwiperSlide key={item.id}>
@@ -49,8 +46,8 @@ const PaymentSlider = ({ paymentMethods }: { paymentMethods: any }) => {
         </SwiperSlide>
       ))}
 
-      <button ref={prevRef} className="hidden" />
-      <button ref={nextRef} className="p-2 border rounded-md cursor-pointer">
+      <button ref={setPrevEl} className="hidden" />
+      <button ref={setNextEl} className="p-2 border rounded-md cursor-pointer">
         <BsChevronRight />
       </button>
     </Swiper>

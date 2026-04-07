@@ -22,8 +22,9 @@ function PathFilterItem({ item }: { item: PathFilterItemType }) {
     <li className="mt-2 flex text-black dark:text-white" key={item.title}>
       <DynamicTag
         href={createUrl(item.path, newParams)}
-        className={`w-full text-sm ${active ? "bg-green-400" : "hover:underline"
-          }`}
+        className={`w-full text-sm ${
+          active ? "bg-green-400" : "hover:underline"
+        }`}
       >
         {item.title}
       </DynamicTag>
@@ -35,7 +36,7 @@ function SortFilterItem({ item }: { item: SortFilterItemType }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const q = searchParams.get("q");
+  const _q = searchParams.get("q");
 
   const newParams = new URLSearchParams(searchParams.toString());
 

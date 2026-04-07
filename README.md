@@ -71,6 +71,10 @@
 
 ## 🛒 Retrieve Shopify Token & Add Demo Products
 
+> **Note:** Shopify has transitioned to the new **Headless Sales Channel** authentication system using Public/Private Access Tokens. The old "Private Apps" system is deprecated. Follow the steps below to get your tokens.
+
+### Step 1: Create a Shopify Store
+
 - To get the tokens needed, create a Shopify partner account.
   ![Screenshot_1](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/1.png)
 
@@ -83,29 +87,38 @@
 - Locate the 'products' CSV file in the public folder of the repository and upload it for demo products.
   ![Screenshot_4](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/4.png)
 
-- On the admin dashboard, click on ‘Settings’ at the bottom of the left sidebar.
+### Step 2: Create a Headless Sales Channel (New Method)
+
+- On the admin dashboard, click on 'Settings' at the bottom of the left sidebar.
   ![Screenshot_5](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/5.png)
 
-- On the Settings page, click on ‘Apps and sales channels’ on the left sidebar.
+- On the Settings page, click on 'Apps and sales channels' on the left sidebar.
   ![Screenshot_6](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/6.png)
 
-- In the Apps and sales channels page that opens, click on ‘Develop apps’ on the top right.
-  ![Screenshot_7](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/7.png)
+- Click on 'Shopify App Store' to browse apps.
 
-- Now, on the App development page that opens, click on ‘Create an app’.
-  ![Screenshot_8](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/8.png)
+- Search for and install the **"Headless"** sales channel app (official Shopify app).
 
-- A ‘Create an app’ popup opens. Fill in any name in the ‘App Name’ text box. In the App Developer text box, your name and email id is automatically fetched. Else type in the same email id you used while signing up for the Shopify store.
-  ![Screenshot_9](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/9.png)
+- Once installed, open the Headless channel and click 'Create storefront'.
 
-- Next, click on ‘Configure’ in the Storefront API integration section.
-  ![Screenshot_10](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/10.png)
+- Give your storefront a name (e.g., "Next.js Storefront").
 
-- In the Storefront API access scopes, select and check all the boxes and click on ‘Save’ and then ‘Install app’.
-  ![Screenshot_11](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/11.png)
+- Navigate to the 'API credentials' or 'Storefront API' tab to get your tokens:
+  - **Private Access Token**: Used for server-side API calls (required)
+  - **Public Access Token**: Used for client-side/browser queries (optional)
+  - **Storefront API endpoint**: Your store domain (e.g., `your-store.myshopify.com`)
 
-- Navigate to the 'API credentials' tab and locate three essential pieces of information. Subsequently, update your `.env` file by replacing the placeholder quotes("") in the `.env.example` file with your Shopify credentials.
-  ![Screenshot_12](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/12.png)
+### Step 3: Configure Environment Variables
+
+- Copy `.env.example` to `.env` and fill in your credentials:
+
+```bash
+SHOPIFY_STORE_DOMAIN="your-store.myshopify.com"
+SHOPIFY_STOREFRONT_PRIVATE_ACCESS_TOKEN="your-private-access-token"
+SHOPIFY_REVALIDATION_SECRET="your-revalidation-secret"  # Optional, for webhooks
+```
+
+> **Migration from old system:** If you have existing `SHOPIFY_STOREFRONT_ACCESS_TOKEN` or `SHOPIFY_API_SECRET_KEY` values, they will continue to work. However, we recommend migrating to the new token format for better security.
 
 - When adding your product, use the same alt title for images with the same color. This helps the first image appear as the color variant in the selector.
   ![Screenshot_13](https://raw.githubusercontent.com/tfmurad/images-shopify-commerce/refs/heads/main/13.png)

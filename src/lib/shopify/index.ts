@@ -71,7 +71,12 @@ const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
   : "";
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
-const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+
+// Support new Private/Public token system while maintaining backward compatibility
+// Priority: Private Access Token (new) > Storefront Access Token (legacy)
+const privateToken = process.env.SHOPIFY_STOREFRONT_PRIVATE_ACCESS_TOKEN;
+const legacyToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+const key = privateToken || legacyToken || "";
 
 type ExtractVariables<T> = T extends { variables: object }
   ? T["variables"]
@@ -91,13 +96,26 @@ export async function shopifyFetch<T>({
   variables?: ExtractVariables<T>;
 }): Promise<{ status: number; body: T } | never> {
   try {
+    // Use Private Access Token header if available, otherwise use standard Storefront token header
+    const requestHeaders: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (privateToken) {
+      requestHeaders["Shopify-Storefront-Private-Token"] = privateToken;
+    } else {
+      requestHeaders["X-Shopify-Storefront-Access-Token"] = key;
+    }
+
+    // Merge with additional headers
+    const additionalHeaders = headers as Record<string, string> | undefined;
+    if (additionalHeaders) {
+      Object.assign(requestHeaders, additionalHeaders);
+    }
+
     const result = await fetch(endpoint, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": key,
-        ...headers,
-      },
+      headers: requestHeaders,
       body: JSON.stringify({
         ...(query && { query }),
         ...(variables && { variables }),
@@ -580,7 +598,11 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);
 
-  if (!secret || secret !== process.env.SHOPIFY_API_SECRET_KEY) {
+  // Support new revalidation secret while maintaining backward compatibility with old key
+  const revalidationSecret =
+    process.env.SHOPIFY_REVALIDATION_SECRET ||
+    process.env.SHOPIFY_API_SECRET_KEY;
+  if (!secret || secret !== revalidationSecret) {
     console.error("Invalid revalidation secret.");
     return NextResponse.json({ status: 200 });
   }

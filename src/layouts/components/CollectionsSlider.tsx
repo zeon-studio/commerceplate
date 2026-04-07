@@ -1,8 +1,7 @@
 "use client";
 
-import ImageFallback from "@/helpers/ImageFallback";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
@@ -13,22 +12,15 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import LoadingCategory from "./loadings/skeleton/SkeletonCategory";
+import ImageFallback from "@/helpers/ImageFallback";
 
 const CollectionsSlider = ({ collections }: { collections: any }) => {
-  const [_, setInit] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [collectionsData, setCollectionsData] = useState([]);
-  const [loadingCollectionsData, setLoadingCollectionsData] = useState(true);
+  const [prevEl, setPrevEl] = useState<HTMLDivElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLDivElement | null>(null);
+  const collectionsData = collections ?? [];
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
-  useEffect(() => {
-    setCollectionsData(collections);
-    setLoadingCollectionsData(false);
-  }, [collections]);
-
-  if (loadingCollectionsData) {
+  if (!collectionsData.length) {
     return <LoadingCategory />;
   }
 
@@ -58,23 +50,21 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
           },
         }}
         navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
+          prevEl,
+          nextEl,
         }}
-        //trigger a re-render by updating the state on swiper initialization
-        onInit={() => setInit(true)}
       >
         {collectionsData?.map((item: any) => {
-          const { title, handle, image, path, products } = item;
+          const { title, handle, image } = item;
           return (
             <SwiperSlide key={handle}>
               <div className="text-center relative">
-                <img
+                <ImageFallback
                   src={image?.url}
                   width={424}
                   height={306}
                   alt={title}
-                  className="h-[150px] md:h-[250px] lg:h-[306px] object-cover rounded-md"
+                  className="h-37.5 md:h-62.5 lg:h-76.5 object-cover rounded-md"
                 />
                 <div className="py-6">
                   <h3 className="mb-2 font-medium h4">
@@ -101,13 +91,13 @@ const CollectionsSlider = ({ collections }: { collections: any }) => {
             }`}
         >
           <div
-            ref={prevRef}
+            ref={setPrevEl}
             className="p-2 lg:p-3 rounded-md bg-body cursor-pointer shadow-sm absolute left-4"
           >
             <HiOutlineArrowNarrowLeft size={24} />
           </div>
           <div
-            ref={nextRef}
+            ref={setNextEl}
             className="p-2 lg:p-3 rounded-md bg-body cursor-pointer shadow-sm absolute right-4"
           >
             <HiOutlineArrowNarrowRight size={24} />

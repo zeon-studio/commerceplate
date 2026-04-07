@@ -1,21 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Tabs = ({ descriptionHtml }: { descriptionHtml: string }) => {
-  const [description, setDescription] = useState("");
-  const [loading, setLoading] = useState(true);
   const [selectedTab, setSelectedTab] = useState(0);
-  const contentArray = description.split(`--- split content ---`);
-
-  useEffect(() => {
-    setDescription(descriptionHtml);
-    setLoading(false);
-  }, [descriptionHtml]);
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
+  const contentArray = descriptionHtml.split(`--- split content ---`);
 
   return (
     <>

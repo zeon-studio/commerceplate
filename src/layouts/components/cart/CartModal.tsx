@@ -28,13 +28,19 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
     if (cart?.totalQuantity !== quantityRef.current) {
       // But only if it's not already open (quantity also changes when editing items in cart).
       if (!isOpen) {
-        setIsOpen(true);
+        const openCartPanel = requestAnimationFrame(() => {
+          setIsOpen(true);
+        });
+
+        quantityRef.current = cart?.totalQuantity;
+
+        return () => cancelAnimationFrame(openCartPanel);
       }
 
       // Always update the quantity reference
       quantityRef.current = cart?.totalQuantity;
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef]);
+  }, [isOpen, cart?.totalQuantity]);
 
   return (
     <>

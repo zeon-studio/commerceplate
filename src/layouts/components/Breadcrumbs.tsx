@@ -9,10 +9,13 @@ const Breadcrumbs = ({ className }: { className?: string }) => {
   const pathname = usePathname();
 
   const paths = pathname.split("/").filter((x) => x);
-  let parts = [
+  const parts = [
     {
       label: (
-        <BiHome className="text-text-light dark:text-darkmode-text-light" size={24} />
+        <BiHome
+          className="text-text-light dark:text-darkmode-text-light"
+          size={24}
+        />
       ),
       href: "/",
       "aria-label": pathname === "/" ? "page" : undefined,

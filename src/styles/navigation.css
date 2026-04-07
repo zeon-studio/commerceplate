@@ -51,7 +51,7 @@
 }
 
 .nav-dropdown-link {
-  @apply block py-1 font-medium text-xl text-text-light transition hover:!text-darkmode-text-dark dark:!text-darkmode-text dark:hover:text-darkmode-primary;
+  @apply block py-1 font-medium text-xl text-text-light transition hover:text-text-dark dark:text-darkmode-text dark:hover:text-darkmode-primary;
 }
 
 /* theme-switcher */

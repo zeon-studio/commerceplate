@@ -14,7 +14,7 @@ const Pagination = ({
   const hasPrevPage = currentPage > 1;
   const hasNextPage = totalPages > currentPage;
 
-  let pageList = [];
+  const pageList = [];
   for (let i = 1; i <= totalPages; i++) {
     pageList.push(i);
   }
@@ -81,28 +81,28 @@ const Pagination = ({
                   {pagination}
                 </span>
               ) : // Check if the page should be displayed with ellipsis
-                i === 0 && currentPage - i > 2 ? (
-                  <span>...</span>
-                ) : i === totalPages - 1 && totalPages - currentPage > 2 ? (
-                  <span>...</span>
-                ) : i === currentPage - 2 ||
-                  i === currentPage - 1 ||
-                  i === currentPage ||
-                  i === currentPage + 1 ||
-                  i === currentPage + 2 ? (
-                  <Link
-                    href={
-                      i === 0
-                        ? `${section ? "/" + section : "/"}`
-                        : `${section ? "/" + section : ""}/page/${pagination}`
-                    }
-                    passHref
-                    aria-current="page"
-                    className="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-theme-light"
-                  >
-                    {pagination}
-                  </Link>
-                ) : null}
+              i === 0 && currentPage - i > 2 ? (
+                <span>...</span>
+              ) : i === totalPages - 1 && totalPages - currentPage > 2 ? (
+                <span>...</span>
+              ) : i === currentPage - 2 ||
+                i === currentPage - 1 ||
+                i === currentPage ||
+                i === currentPage + 1 ||
+                i === currentPage + 2 ? (
+                <Link
+                  href={
+                    i === 0
+                      ? `${section ? "/" + section : "/"}`
+                      : `${section ? "/" + section : ""}/page/${pagination}`
+                  }
+                  passHref
+                  aria-current="page"
+                  className="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-theme-light"
+                >
+                  {pagination}
+                </Link>
+              ) : null}
             </React.Fragment>
           ))}
 

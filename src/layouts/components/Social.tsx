@@ -2,7 +2,7 @@
 
 import DynamicIcon from "@/helpers/DynamicIcon";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Social: React.FC<{ socialName: string; className: string }> = ({
   socialName,
@@ -12,12 +12,10 @@ const Social: React.FC<{ socialName: string; className: string }> = ({
   className: string;
 }) => {
   const pathname = usePathname();
-  const [baseUrl, setBaseUrl] = useState("");
+  const [baseUrl] = useState(() =>
+    typeof window !== "undefined" ? window.location.origin : "",
+  );
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
-
-  useEffect(() => {
-    setBaseUrl(window.location.origin);
-  }, []);
 
   const handleCopyLink = () => {
     const fullLink = `${baseUrl}${pathname}`;

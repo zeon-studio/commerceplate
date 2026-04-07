@@ -58,7 +58,7 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
           cursor
         ) {
           let queryString = "";
-          let filterCategoryProduct = [];
+          const filterCategoryProduct = [];
 
           if (minPrice && maxPrice) {
             filterCategoryProduct.push({
@@ -86,8 +86,8 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
           if (brand) {
             Array.isArray(brand)
               ? (queryString += `${brand
-                .map((b) => `(vendor:${b})`)
-                .join(" OR ")}`)
+                  .map((b) => `(vendor:${b})`)
+                  .join(" OR ")}`)
               : (queryString += `vendor:"${brand}"`);
 
             if (Array.isArray(brand) && brand.length > 0) {
@@ -120,14 +120,14 @@ const ProductCardView = ({ searchParams }: { searchParams: any }) => {
           productsData =
             category && category !== "all"
               ? await getCollectionProducts({
-                collection: category,
-                sortKey,
-                reverse,
-                filterCategoryProduct:
-                  filterCategoryProduct.length > 0
-                    ? filterCategoryProduct
-                    : undefined,
-              })
+                  collection: category,
+                  sortKey,
+                  reverse,
+                  filterCategoryProduct:
+                    filterCategoryProduct.length > 0
+                      ? filterCategoryProduct
+                      : undefined,
+                })
               : await getProducts({ ...query, cursor });
         } else {
           // Fetch all products

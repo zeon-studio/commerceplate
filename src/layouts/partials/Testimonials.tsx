@@ -3,7 +3,7 @@
 import ImageFallback from "@/helpers/ImageFallback";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Testimonial } from "@/types";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   HiOutlineArrowNarrowLeft,
   HiOutlineArrowNarrowRight,
@@ -22,11 +22,9 @@ const Testimonials = ({
   title: string;
   testimonials: Array<Testimonial>;
 }) => {
-  const [_, setInit] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const [prevEl, setPrevEl] = useState<HTMLDivElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLDivElement | null>(null);
   return (
     <section className="section">
       <div className="container">
@@ -48,11 +46,9 @@ const Testimonials = ({
               modules={[Pagination, Navigation]}
               spaceBetween={24}
               navigation={{
-                prevEl: prevRef.current,
-                nextEl: nextRef.current,
+                prevEl,
+                nextEl,
               }}
-              //trigger a re-render by updating the state on swiper initialization
-              onInit={() => setInit(true)}
             >
               {testimonials.map((item: Testimonial, index: number) => (
                 <SwiperSlide key={index}>
@@ -110,13 +106,13 @@ const Testimonials = ({
                   }`}
               >
                 <div
-                  ref={prevRef}
+                  ref={setPrevEl}
                   className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm"
                 >
                   <HiOutlineArrowNarrowLeft size={24} />
                 </div>
                 <div
-                  ref={nextRef}
+                  ref={setNextEl}
                   className="p-2 lg:p-4 rounded-md bg-body cursor-pointer shadow-sm"
                 >
                   <HiOutlineArrowNarrowRight size={24} />
