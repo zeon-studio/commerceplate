@@ -5,8 +5,6 @@ command = "yarn build"
 [functions]
 included_files = ["src/content/**"]
 
-[build.environment]
-NODE_VERSION = "22"
 # __NEXT_PRIVATE_PREBUNDLED_REACT = "next"
 # NEXT_FORCE_EDGE_IMAGES = true
 
